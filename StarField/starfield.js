@@ -1,12 +1,12 @@
 var stars = []
 var planets = []
-var speed = 20;
+var speed = 1;
 
 function setup() {
     createCanvas(windowWidth, windowHeight);
     background(0);
     noStroke();
-    for (var i = 0; i < 200; i++) {
+    for (var i = 0; i < 400; i++) {
         stars[i] = new Star();
 				planets[i] = new Planet();
     }
@@ -28,6 +28,20 @@ function draw() {
 					planets[i].show();
 				}
     }
+
+		if (mouseIsPressed) {
+				for (var i = 0; i < 8; i++) {
+					speed = speed + 0.1;
+				}
+		} else if (mouseIsPressed === false) {
+					for (var i = 0; i < speed-1; i++) {
+						if (speed > 0) {
+							speed = speed - 0.1;
+						} else {
+							speed = 1;
+						}
+					}
+		}
 }
 
 function Star() {
@@ -69,7 +83,7 @@ function Planet() {
     this.show = function() {
         var sx = map(this.x / this.z, 0, 1, 0, width);
         var sy = map(this.y / this.z, 0, 1, 0, height);
-        var r = map(this.z, 0, width, 20, 0);
+        var r = map(this.z, 0, width, 7, 0);
         ellipse(sx, sy, r, r);
     }
 }

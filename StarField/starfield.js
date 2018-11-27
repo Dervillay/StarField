@@ -34,13 +34,13 @@ function draw() {
 					speed = speed + 0.1;
 				}
 		} else if (mouseIsPressed === false) {
-					for (var i = 0; i < speed-1; i++) {
-						if (speed > 0) {
-							speed = speed - 0.1;
-						} else {
-							speed = 1;
-						}
-					}
+		    for (var i = 0; i < speed-1; i++) {
+				    if (speed > 0) {
+							     speed = speed - 0.1;
+		        } else {
+							     speed = 1;
+			      }
+		    }
 		}
 }
 

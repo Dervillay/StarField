@@ -19,11 +19,11 @@ function draw() {
     translate(width / 2, height / 2);
 
     for (var i = 0; i < stars.length; i++) {
-				fill(255);
+        fill(255)
         stars[i].update();
         stars[i].show();
 
-			if (i % 100 == 0) {
+			if (i % 25 == 0) {
 					planets[i].update();
 					planets[i].show();
 				}
@@ -70,6 +70,9 @@ function Planet() {
 		this.x = random(-width / 2, width / 2);
     this.y = random(-height / 2, height / 2);
     this.z = random(width);
+    this.r = random(255);
+    this.g = random(255);
+    this.b = random(255);
 
     this.update = function() {
         this.z -= speed;
@@ -84,6 +87,7 @@ function Planet() {
         var sx = map(this.x / this.z, 0, 1, 0, width);
         var sy = map(this.y / this.z, 0, 1, 0, height);
         var r = map(this.z, 0, width, 7, 0);
+        fill(this.r, this.g, this.b);
         ellipse(sx, sy, r, r);
     }
 }

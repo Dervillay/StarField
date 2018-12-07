@@ -23,20 +23,15 @@ function draw() {
 
         stars[i].update();
 
-				fill(100);
-
 				if ((Math.abs(stars[i].sx - mX) <= 5) && (Math.abs(stars[i].sy - mY) <= 5) && !mouseIsPressed) {
-					ellipse(stars[i].sx, stars[i].sy, 15, 15);
-					fill(70, 70, 70);
-					rect(stars[i].sx - 25, stars[i].sy - 30, 50, 15, 3, 3, 3, 3);
-					triangle(stars[i].sx, stars[i].sy - 10, stars[i].sx - 7, stars[i].sy - 16, stars[i].sx + 7, stars[i].sy - 16);
+					stars[i].label();
 				} else if ((Math.abs(planets[i].sx - mX) <= 5) && (Math.abs(planets[i].sy - mY) <= 5)) {
-					ellipse(planets[i].sx, planets[i].sy, 15, 15);
+					planets[i].label();
 				}
 
         stars[i].show();
 
-			if (i % 100 == 0) {
+				if (i % 10 == 0) {
 					planets[i].update();
 					planets[i].show();
 				}
@@ -61,6 +56,37 @@ function Star() {
     this.x = random(-width / 2, width / 2);
     this.y = random(-height / 2, height / 2);
     this.z = random(width);
+
+		this.makeName = function() {
+			var name;
+			var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+			var nums = "0123456789";
+
+			for (var i = 0; i < 5; i++) {
+				name += chars.charAt(Math.floor(Math.random() * chars.length));
+			}
+
+			name += " ";
+
+			for (var i = 0; i < 2; i++) {
+				name += nums.charAt(Math.floor(Math.random()* nums.length));
+			}
+
+			return name;
+		}
+
+		this.name = this.makeName().substring('undefined'.length);
+
+		this.label = function() {
+			fill(30, 30, 30);
+			ellipse(this.sx, this.sy, 15, 15);
+			rect(this.sx - 35, this.sy - 40, 70, 25, 3, 3, 3, 3);
+			triangle(this.sx, this.sy - 10, this.sx - 7, this.sy - 16, this.sx + 7, this.sy - 16);
+			fill(255);
+			textSize(12);
+			textFont("Arial");
+			text(this.name, this.sx - 25, this.sy - 25)
+		}
 
     this.update = function() {
         this.z -= speed;
@@ -92,6 +118,28 @@ function Planet() {
     this.g = random(130);
     this.b = random(130);
 
+		this.makeName = function() {
+			var name;
+  		var gods = ["Zeus", "Hera", "Poseidon", "Hades", "Athena", "Apollo", "Artemis", "Aphrodite", "Hermes", "Ares" ];
+			var numerals = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"]
+
+    	name = gods[Math.floor(Math.random() * gods.length)] + " " + numerals[Math.floor(Math.random() * numerals.length)];
+  		return name;
+		}
+
+		this.name = this.makeName();
+
+		this.label = function() {
+			fill(30, 30, 30);
+			ellipse(this.sx, this.sy, 15, 15);
+			rect(this.sx - 35, this.sy - 40, 70, 25, 3, 3, 3, 3);
+			triangle(this.sx, this.sy - 10, this.sx - 7, this.sy - 16, this.sx + 7, this.sy - 16);
+			fill(255);
+			textSize(12);
+			textFont("Arial");
+			text(this.name, this.sx - 25, this.sy - 25)
+		}
+
     this.update = function() {
         this.z -= speed;
         if (this.z < 1) {
@@ -112,31 +160,4 @@ function Planet() {
         fill(this.r, this.g, this.b);
         ellipse(sx, sy, r, r);
     }
-}
-
-function nameStar() {
-  var name;
-  var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-	var nums = "0123456789";
-
-  for (var i = 0; i < 5; i++) {
-    name += chars.charAt(Math.floor(Math.random() * chars.length));
-	}
-
-	name += "_";
-
-	for (var i = 0; i < 2; i++) {
-		name += nums.charAt(Math.floor(Math.random()* nums.length));
-	}
-
-  return name;
-}
-
-function namePlanet() {
-  var name;
-  var gods = ["Zeus", "Hera", "Poseidon", "Hades", "Athena", "Apollo", "Artemis", "Aphrodite", "Hermes", "Ares" ];
-	var numerals = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"]
-
-    name = gods[Math.floor(Math.random() * gods.length)] + "_" + numerals[Math.floor(Math.random() * numerals.length)];
-  return name;
 }

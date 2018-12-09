@@ -39,15 +39,15 @@ function draw() {
 
 		if (mouseIsPressed) {
 				for (var i = 0; i < 8; i++) {
-					speed = speed + 0.1;
+					if (speed < 70) {
+						speed = speed + 0.1;
+					}
 				}
 		} else if (mouseIsPressed === false) {
-		    for (var i = 0; i < speed-1; i++) {
+		    for (var i = 0; i < speed-0.4; i++) {
 				    if (speed > 0) {
 							     speed = speed - 0.1;
-		        } else {
-							     speed = 1;
-			      }
+		        }
 		    }
 		}
 }
@@ -85,7 +85,8 @@ function Star() {
 			fill(255);
 			textSize(12);
 			textFont("Arial");
-			text(this.name, this.sx - 25, this.sy - 25)
+			textAlign(CENTER);
+			text(this.name, this.sx, this.sy - 23)
 		}
 
     this.update = function() {
@@ -137,7 +138,8 @@ function Planet() {
 			fill(255);
 			textSize(12);
 			textFont("Arial");
-			text(this.name, this.sx - 25, this.sy - 25)
+			textAlign(CENTER);
+			text(this.name, this.sx, this.sy - 23)
 		}
 
     this.update = function() {

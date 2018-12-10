@@ -1,15 +1,31 @@
+var speed = 1;
 var stars = []
 var planets = []
-var speed = 1;
 
 function setup() {
     createCanvas(windowWidth, windowHeight);
-    background(0);
-    noStroke();
-    for (var i = 0; i < 400; i++) {
-        stars[i] = new Star();
-				planets[i] = new Planet();
-    }
+    starDensity = createSlider(10, 2000);
+    starDensity.position(20, 20);
+    planetDensity = createSlider(10, 2000);
+    planetDensity.position(20, 60);
+    button = createButton("Generate Star Field");
+    button.position(30,90);
+    button.mousePressed(generate);
+}
+
+function generate() {
+  background(0);
+  noStroke();
+  stars = [];
+  planets = [];
+  
+  for (var i = 0; i < starDensity.value(); i++) {
+      stars[i] = new Star();
+  }
+
+  for (var i = 0; i < planetDensity.value(); i++) {
+      planets[i] = new Planet();
+  }
 }
 
 function draw() {
@@ -25,16 +41,20 @@ function draw() {
 
 				if ((Math.abs(stars[i].sx - mX) <= 5) && (Math.abs(stars[i].sy - mY) <= 5) && !mouseIsPressed) {
 					stars[i].label();
-				} else if ((Math.abs(planets[i].sx - mX) <= 5) && (Math.abs(planets[i].sy - mY) <= 5)) {
-					planets[i].label();
-				}
+        }
 
         stars[i].show();
+    }
 
-				if (i % 10 == 0) {
-					planets[i].update();
-					planets[i].show();
-				}
+    for (var i = 0; i < planets.length; i++) {
+
+        planets[i].update();
+
+        if ((Math.abs(planets[i].sx - mX) <= 5) && (Math.abs(planets[i].sy - mY) <= 5) && !mouseIsPressed) {
+          planets[i].label();
+        }
+
+        planets[i].show();
     }
 
 		if (mouseIsPressed) {

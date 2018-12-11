@@ -65,8 +65,9 @@ class StarField {
 }
 
 class Planet {
+
 	constructor () {
-		this.x = random(-width / 2, width / 2);
+		    this.x = random(-width / 2, width / 2);
         this.y = random(-height / 2, height / 2);
         this.z = random(width);
         this.r = random(130);
@@ -80,11 +81,11 @@ class Planet {
     }
 
     makeName() {
-		this.name = this.gods[Math.floor(Math.random() * this.gods.length)] + " " + this.numerals[Math.floor(Math.random() * this.numerals.length)];
+		    this.name = this.gods[Math.floor(Math.random() * this.gods.length)] + " " + this.numerals[Math.floor(Math.random() * this.numerals.length)];
     }
 
     label() {
-		fill(30, 30, 30);
+		    fill(30, 30, 30);
         ellipse(this.sx, this.sy, 15, 15);
         rect(this.sx - 35, this.sy - 40, 70, 25, 3, 3, 3, 3);
         triangle(this.sx, this.sy - 10, this.sx - 7, this.sy - 16, this.sx + 7, this.sy - 16);
@@ -114,6 +115,7 @@ class Planet {
 }
 
  class Star {
+
     constructor() {
 		this.x = random(-width / 2, width / 2);
         this.y = random(-height / 2, height / 2);
@@ -127,21 +129,21 @@ class Planet {
 
     makeName() {
         for (var i = 0; i < 5; i++) {
-			this.name += this.chars.charAt(Math.floor(Math.random() * this.chars.length));
+			       this.name += this.chars.charAt(Math.floor(Math.random() * this.chars.length));
         }
 
-		this.name += " ";
+		    this.name += " ";
 
-		for (var i = 0; i < 2; i++) {
-			this.name += this.nums.charAt(Math.floor(Math.random()* this.nums.length));
-		}
+		    for (var i = 0; i < 2; i++) {
+			       this.name += this.nums.charAt(Math.floor(Math.random()* this.nums.length));
+		    }
 
-		this.name = this.name.substring('undefined'.length);
+		    this.name = this.name.substring('undefined'.length);
     }
 
-    label() {
-		fill(30, 30, 30);
-		ellipse(this.sx, this.sy, 15, 15);
+        label() {
+		    fill(30, 30, 30);
+		    ellipse(this.sx, this.sy, 15, 15);
         rect(this.sx - 35, this.sy - 40, 70, 25, 3, 3, 3, 3);
         triangle(this.sx, this.sy - 10, this.sx - 7, this.sy - 16, this.sx + 7, this.sy - 16);
         fill(255);
@@ -152,18 +154,18 @@ class Planet {
     }
 
     update(speed) {
-		this.z -= speed;
+		    this.z -= speed;
         if (this.z < 1) {
-			this.z = width;
+			      this.z = width;
             this.x = random(-width / 2, width / 2);
             this.y = random(-height / 2, height / 2);
         }
     }
 
     show() {
-		this.sx = map(this.x / this.z, 0, 1, 0, width);
-		this.sy = map(this.y / this.z, 0, 1, 0, height);
-		this.r = map(this.z, 0, width, 5, 0);
+		    this.sx = map(this.x / this.z, 0, 1, 0, width);
+		    this.sy = map(this.y / this.z, 0, 1, 0, height);
+		    this.r = map(this.z, 0, width, 5, 0);
         fill(255);
         ellipse(this.sx, this.sy, this.r);
     }

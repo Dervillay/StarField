@@ -70,9 +70,9 @@ class Planet {
 		    this.x = random(-width / 2, width / 2);
         this.y = random(-height / 2, height / 2);
         this.z = random(width);
-        this.r = random(130);
-        this.g = random(130);
-        this.b = random(130);
+        this.red = random(130);
+        this.green = random(130);
+        this.blue = random(130);
         this.sx = map(this.x / this.z, 0, 1, 0, width);
         this.sy = map(this.y / this.z, 0, 1, 0, height);
         this.r = map(this.z, 0, width, 10, 0);
@@ -109,7 +109,7 @@ class Planet {
 		this.sx = map(this.x / this.z, 0, 1, 0, width);
 		this.sy = map(this.y / this.z, 0, 1, 0, height);
 		this.r = map(this.z, 0, width, 10, 0);
-        fill(this.r, this.g, this.b);
+        fill(this.red, this.green, this.blue);
         ellipse(this.sx, this.sy, this.r);
     }
 }

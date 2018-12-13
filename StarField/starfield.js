@@ -1,12 +1,13 @@
 class StarField {
 
-	constructor(starDensity, planetDensity, maxSpeed) {
+	constructor(starDensity, planetDensity, maxSpeed, planetLabelling) {
 		this.speed = 1;
 		this.maxSpeed = maxSpeed || 50;
 		this.stars = [];
 		this.starDensity = starDensity || 400;
 		this.planets = [];
 		this.planetDensity = planetDensity || 40;
+    this.planetLabelling = planetLabelling || true;
 		this.mX = mouseX - width/2;
 		this.mY = mouseY - height/2;
 
@@ -33,7 +34,7 @@ class StarField {
 		this.mY = mouseY - height/2;
 
 		for (var i = 0; i < this.stars.length; i++) {
-			if ((Math.abs(this.stars[i].sx - this.mX) <= 10) && (Math.abs(this.stars[i].sy - this.mY) <= 10) && !mouseIsPressed) {
+			if ((Math.abs(this.stars[i].sx - this.mX) <= 10) && (Math.abs(this.stars[i].sy - this.mY) <= 10) && !mouseIsPressed && labellingOn) {
 				this.stars[i].label();
 			}
 			this.stars[i].update(this.speed);
@@ -41,7 +42,7 @@ class StarField {
 		}
 
 		for (var i = 0; i < this.planets.length; i++) {
-			if ((Math.abs(this.planets[i].sx - this.mX) <= 10) && (Math.abs(this.planets[i].sy - this.mY) <= 10) && !mouseIsPressed) {
+			if ((Math.abs(this.planets[i].sx - this.mX) <= 10) && (Math.abs(this.planets[i].sy - this.mY) <= 10) && !mouseIsPressed && labellingOn) {
 				this.planets[i].label();
 			}
 			this.planets[i].update(this.speed);

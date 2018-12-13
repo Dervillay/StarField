@@ -1,7 +1,7 @@
 var s;
 
-function setup(sD, pD, mS) {
-    s = new StarField(sD, pD, mS);
+function setup(starD, planetD, maxS, planetLabels) {
+    s = new StarField(starD, planetD, maxS, planetLabels);
 }
 
 function draw() {

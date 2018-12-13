@@ -7,6 +7,29 @@
     <script src="../p5.js"></script>
     <script src="starfield.js"></script>
     <script src="index.js"></script>
-    <button id="generate">Generate</button>
+    <div class="slidecontainer">
+      <input type="range" min="10" max="2000" value="400" class="slider" id="starDensity">
+    </div>
+    <div>
+      <input type="range" min="10" max="2000" value="40" class="slider" id="planetDensity">
+    </div>
+    <div>
+      <input type="range" min="1" max="200" value="70" class="slider" id="maxSpeed">
+    </div>
+    <button id="generate" onclick="log()">Generate</button>
+    <script type="text/javascript">
+      var starDensity = document.getElementById("starDensity").value;
+      var planetDensity = document.getElementById("planetDensity").value;
+      var maxSpeed = document.getElementById("maxSpeed").value;
+      function log() {
+        starDensity = document.getElementById("starDensity").value;
+        planetDensity = document.getElementById("planetDensity").value;
+        maxSpeed = document.getElementById("maxSpeed").value;
+      }
+      function generate() {
+        setup(starDensity, planetDensity, maxSpeed);
+      }
+      document.getElementById("generate").addEventListener("click", generate);
+    </script>
   </head>
 </html>

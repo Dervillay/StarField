@@ -1,13 +1,13 @@
 class StarField {
 
-	constructor(starDensity, planetDensity, maxSpeed, planetLabelling) {
+	constructor(starDensity, planetDensity, maxSpeed, objectLabelling) {
 		this.speed = 1;
 		this.maxSpeed = maxSpeed || 50;
 		this.stars = [];
 		this.starDensity = starDensity || 400;
 		this.planets = [];
 		this.planetDensity = planetDensity || 40;
-    this.planetLabelling = planetLabelling || true;
+    this.objectLabelling = objectLabelling || false;
 		this.mX = mouseX - width/2;
 		this.mY = mouseY - height/2;
 
@@ -26,6 +26,48 @@ class StarField {
 		}
 	}
 
+	get speed() {
+		return this._speed;
+	}
+
+	get maxSpeed() {
+		return this._maxSpeed;
+	}
+
+	get starDensity() {
+		return this._starDensity;
+	}
+
+	get planetDensity() {
+		return this._planetDensity;
+	}
+
+	get objectLabelling() {
+		return this._objectLabelling;
+	}
+
+	set speed(speed) {
+		this._speed = speed;
+	}
+
+	set maxSpeed(maxSpeed) {
+		this._maxSpeed = maxSpeed;
+	}
+
+	set starDensity(starDensity) {
+		this._starDensity = starDensity;
+	}
+
+	set planetDensity(planetDensity) {
+		this._planetDensity = planetDensity;
+	}
+
+	set objectLabelling(objectLabelling) {
+		this._objectLabelling = objectLabelling;
+	}
+
+
+
 	draw() {
 		fill(0, 100);
 		rect(0, 0, width, height);
@@ -34,7 +76,7 @@ class StarField {
 		this.mY = mouseY - height/2;
 
 		for (var i = 0; i < this.stars.length; i++) {
-			if ((Math.abs(this.stars[i].sx - this.mX) <= 10) && (Math.abs(this.stars[i].sy - this.mY) <= 10) && !mouseIsPressed && labellingOn) {
+			if ((Math.abs(this.stars[i].sx - this.mX) <= 10) && (Math.abs(this.stars[i].sy - this.mY) <= 10) && !mouseIsPressed && this.objectLabelling) {
 				this.stars[i].label();
 			}
 			this.stars[i].update(this.speed);
@@ -42,7 +84,7 @@ class StarField {
 		}
 
 		for (var i = 0; i < this.planets.length; i++) {
-			if ((Math.abs(this.planets[i].sx - this.mX) <= 10) && (Math.abs(this.planets[i].sy - this.mY) <= 10) && !mouseIsPressed && labellingOn) {
+			if ((Math.abs(this.planets[i].sx - this.mX) <= 10) && (Math.abs(this.planets[i].sy - this.mY) <= 10) && !mouseIsPressed && this.objectLabelling) {
 				this.planets[i].label();
 			}
 			this.planets[i].update(this.speed);
@@ -81,9 +123,89 @@ class Planet {
         this.numerals = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"]
     }
 
-    makeName() {
+		makeName() {
 		    this.name = this.gods[Math.floor(Math.random() * this.gods.length)] + " " + this.numerals[Math.floor(Math.random() * this.numerals.length)];
     }
+
+		get x() {
+			return this._x;
+		}
+
+		get y() {
+			return this.__y;
+		}
+
+		get z() {
+			return this._z;
+		}
+
+		get red() {
+			return this._red;
+		}
+
+		get blue() {
+			return this._blue;
+		}
+
+		get green() {
+			return this._green;
+		}
+
+		get sx() {
+			return this._sx;
+		}
+
+		get sy() {
+			return this._sy;
+		}
+
+		get r() {
+			return this._r;
+		}
+
+		get name() {
+			return this._name;
+		}
+
+		set x(x) {
+			this._x = x;
+		}
+
+		set y(y) {
+			this._y = y;
+		}
+
+		set z(z) {
+			this._z = z;
+		}
+
+		set red(red) {
+			this._red = red;
+		}
+
+		set blue(blue) {
+			this._blue = blue;
+		}
+
+		set green(green) {
+			this._green = green;
+		}
+
+		set sx(sx) {
+			this._sx = sx;
+		}
+
+		set sy(sy) {
+			this._sy = sy;
+		}
+
+		set r(r) {
+			this._r = r;
+		}
+
+		set name(name) {
+			this._name = name;
+		}
 
     label() {
 		    fill(30, 30, 30);
@@ -98,27 +220,27 @@ class Planet {
     }
 
     update(speed) {
-        this.z -= speed;
-        if (this.z < 1) {
-			this.z = width;
-            this.x = random(-width / 2, width / 2);
-			this.y = random(-height / 2, height / 2);
-        }
+    	this.z -= speed;
+      if (this.z < 1) {
+				this.z = width;
+        this.x = random(-width / 2, width / 2);
+				this.y = random(-height / 2, height / 2);
+      }
     }
 
     show() {
-		this.sx = map(this.x / this.z, 0, 1, 0, width);
-		this.sy = map(this.y / this.z, 0, 1, 0, height);
-		this.r = map(this.z, 0, width, 10, 0);
-        fill(this.red, this.green, this.blue);
-        ellipse(this.sx, this.sy, this.r);
+			this.sx = map(this.x / this.z, 0, 1, 0, width);
+			this.sy = map(this.y / this.z, 0, 1, 0, height);
+			this.r = map(this.z, 0, width, 10, 0);
+      fill(this.red, this.green, this.blue);
+      ellipse(this.sx, this.sy, this.r);
     }
 }
 
  class Star {
 
     constructor() {
-		this.x = random(-width / 2, width / 2);
+				this.x = random(-width / 2, width / 2);
         this.y = random(-height / 2, height / 2);
         this.z = random(width);
         this.sx = map(this.x / this.z, 0, 1, 0, width);
@@ -128,21 +250,77 @@ class Planet {
         this.nums = "0123456789";
     }
 
-    makeName() {
+		makeName() {
         for (var i = 0; i < 5; i++) {
-			       this.name += this.chars.charAt(Math.floor(Math.random() * this.chars.length));
+			  	this.name += this.chars.charAt(Math.floor(Math.random() * this.chars.length));
         }
 
 		    this.name += " ";
 
 		    for (var i = 0; i < 2; i++) {
-			       this.name += this.nums.charAt(Math.floor(Math.random()* this.nums.length));
+			  	this.name += this.nums.charAt(Math.floor(Math.random()* this.nums.length));
 		    }
 
 		    this.name = this.name.substring('undefined'.length);
     }
 
-        label() {
+		get x() {
+			return this._x;
+		}
+
+		get y() {
+			return this._y;
+		}
+
+		get z() {
+			return this._z;
+		}
+
+		get sx() {
+			return this._sx;
+		}
+
+		get sy() {
+			return this._sy;
+		}
+
+		get r() {
+			return this._r;
+		}
+
+		get name() {
+			return this._name;
+		}
+
+		set x(x) {
+			this._x = x;
+		}
+
+		set y(y) {
+			this._y = y;
+		}
+
+		set z(z) {
+			this._z = z;
+		}
+
+		set sx(sx) {
+			this._sx = sx;
+		}
+
+		set sy(sy) {
+			this._sy = sy;
+		}
+
+		set r(r) {
+			this._r = r;
+		}
+
+		set name(name) {
+			this._name = name;
+		}
+
+    label() {
 		    fill(30, 30, 30);
 		    ellipse(this.sx, this.sy, 15, 15);
         rect(this.sx - 35, this.sy - 40, 70, 25, 3, 3, 3, 3);
@@ -157,9 +335,9 @@ class Planet {
     update(speed) {
 		    this.z -= speed;
         if (this.z < 1) {
-			      this.z = width;
-            this.x = random(-width / 2, width / 2);
-            this.y = random(-height / 2, height / 2);
+			  	this.z = width;
+        	this.x = random(-width / 2, width / 2);
+          this.y = random(-height / 2, height / 2);
         }
     }
 

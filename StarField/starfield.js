@@ -26,6 +26,7 @@ class StarField {
 		}
 	}
 
+	
 	get speed() {
 		return this._speed;
 	}
@@ -127,6 +128,7 @@ class Planet {
 		    this.name = this.gods[Math.floor(Math.random() * this.gods.length)] + " " + this.numerals[Math.floor(Math.random() * this.numerals.length)];
     }
 
+		/*
 		get x() {
 			return this._x;
 		}
@@ -206,6 +208,7 @@ class Planet {
 		set name(name) {
 			this._name = name;
 		}
+		*/
 
     label() {
 		    fill(30, 30, 30);
@@ -264,6 +267,7 @@ class Planet {
 		    this.name = this.name.substring('undefined'.length);
     }
 
+		/*
 		get x() {
 			return this._x;
 		}
@@ -319,6 +323,7 @@ class Planet {
 		set name(name) {
 			this._name = name;
 		}
+		*/
 
     label() {
 		    fill(30, 30, 30);

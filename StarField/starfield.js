@@ -20,7 +20,7 @@ class StarField {
 			this.stars[i].makeName();
 		}
 
-		for (var i = 0; i < this.planetDensity; i++) {
+		for (i = 0; i < this.planetDensity; i++) {
 			this.planets[i] = new Planet();
 			this.planets[i].makeName();
 		}
@@ -110,7 +110,7 @@ class StarField {
 class Planet {
 
 	constructor () {
-		    this.x = random(-width / 2, width / 2);
+		this.x = random(-width / 2, width / 2);
         this.y = random(-height / 2, height / 2);
         this.z = random(width);
         this.red = random(130);
@@ -123,92 +123,92 @@ class Planet {
         this.numerals = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"]
     }
 
-		get x() {
-			return this._x;
-		}
+	get x() {
+		return this._x;
+	}
 
-		get y() {
-			return this._y;
-		}
+	get y() {
+		return this._y;
+	}
 
-		get z() {
-			return this._z;
-		}
+	get z() {
+		return this._z;
+	}
 
-		get red() {
-			return this._red;
-		}
+	get red() {
+		return this._red;
+	}
 
-		get blue() {
-			return this._blue;
-		}
+	get blue() {
+		return this._blue;
+	}
 
-		get green() {
-			return this._green;
-		}
+	get green() {
+		return this._green;
+	}
 
-		get sx() {
-			return this._sx;
-		}
+	get sx() {
+		return this._sx;
+	}
 
-		get sy() {
-			return this._sy;
-		}
+	get sy() {
+		return this._sy;
+	}
 
-		get r() {
-			return this._r;
-		}
+	get r() {
+		return this._r;
+	}
 
-		get name() {
-			return this._name;
-		}
+	get name() {
+		return this._name;
+	}
 
-		set x(x) {
-			this._x = x;
-		}
+	set x(x) {
+		this._x = x;
+	}
 
-		set y(y) {
-			this._y = y;
-		}
+	set y(y) {
+		this._y = y;
+	}
 
-		set z(z) {
-			this._z = z;
-		}
+	set z(z) {
+		this._z = z;
+	}
 
-		set red(red) {
-			this._red = red;
-		}
+	set red(red) {
+		this._red = red;
+	}
 
-		set blue(blue) {
-			this._blue = blue;
-		}
+	set blue(blue) {
+		this._blue = blue;
+	}
 
-		set green(green) {
-			this._green = green;
-		}
+	set green(green) {
+		this._green = green;
+	}
 
-		set sx(sx) {
-			this._sx = sx;
-		}
+	set sx(sx) {
+		this._sx = sx;
+	}
 
-		set sy(sy) {
-			this._sy = sy;
-		}
+	set sy(sy) {
+		this._sy = sy;
+	}
 
-		set r(r) {
-			this._r = r;
-		}
+	set r(r) {
+		this._r = r;
+	}
 
-		set name(name) {
-			this._name = name;
-		}
+	set name(name) {
+		this._name = name;
+	}
 
-		makeName() {
-		    this.name = this.gods[Math.floor(Math.random() * this.gods.length)] + " " + this.numerals[Math.floor(Math.random() * this.numerals.length)];
+	makeName() {
+		this.name = this.gods[Math.floor(Math.random() * this.gods.length)] + " " + this.numerals[Math.floor(Math.random() * this.numerals.length)];
     }
 
     label() {
-		    fill(30, 30, 30);
+		fill(30, 30, 30);
         ellipse(this.sx, this.sy, 15, 15);
         rect(this.sx - 35, this.sy - 40, 70, 25, 3, 3, 3, 3);
         triangle(this.sx, this.sy - 10, this.sx - 7, this.sy - 16, this.sx + 7, this.sy - 16);
@@ -219,28 +219,28 @@ class Planet {
         text(this.name, this.sx, this.sy - 23)
     }
 
-    update(speed) {
-    	this.z -= speed;
-      if (this.z < 1) {
-				this.z = width;
-        this.x = random(-width / 2, width / 2);
-				this.y = random(-height / 2, height / 2);
-      }
-    }
+	update(speed) {
+		this.z -= speed;
+		if (this.z < 1) {
+			this.z = width;
+			this.x = random(-width / 2, width / 2);
+			this.y = random(-height / 2, height / 2);
+		}
+	}
 
     show() {
-			this.sx = map(this.x / this.z, 0, 1, 0, width);
-			this.sy = map(this.y / this.z, 0, 1, 0, height);
-			this.r = map(this.z, 0, width, 10, 0);
-      fill(this.red, this.green, this.blue);
-      ellipse(this.sx, this.sy, this.r);
+		this.sx = map(this.x / this.z, 0, 1, 0, width);
+		this.sy = map(this.y / this.z, 0, 1, 0, height);
+		this.r = map(this.z, 0, width, 10, 0);
+		fill(this.red, this.green, this.blue);
+		ellipse(this.sx, this.sy, this.r);
     }
 }
 
  class Star {
 
     constructor() {
-				this.x = random(-width / 2, width / 2);
+		this.x = random(-width / 2, width / 2);
         this.y = random(-height / 2, height / 2);
         this.z = random(width);
         this.sx = map(this.x / this.z, 0, 1, 0, width);
@@ -250,79 +250,79 @@ class Planet {
         this.nums = "0123456789";
     }
 
-		get x() {
-			return this._x;
-		}
+	get x() {
+		return this._x;
+	}
 
-		get y() {
-			return this._y;
-		}
+	get y() {
+		return this._y;
+	}
 
-		get z() {
-			return this._z;
-		}
+	get z() {
+		return this._z;
+	}
 
-		get sx() {
-			return this._sx;
-		}
+	get sx() {
+		return this._sx;
+	}
 
-		get sy() {
-			return this._sy;
-		}
+	get sy() {
+		return this._sy;
+	}
 
-		get r() {
-			return this._r;
-		}
+	get r() {
+		return this._r;
+	}
 
-		get name() {
-			return this._name;
-		}
+	get name() {
+		return this._name;
+	}
 
-		set x(x) {
-			this._x = x;
-		}
+	set x(x) {
+		this._x = x;
+	}
 
-		set y(y) {
-			this._y = y;
-		}
+	set y(y) {
+		this._y = y;
+	}
 
-		set z(z) {
-			this._z = z;
-		}
+	set z(z) {
+		this._z = z;
+	}
 
-		set sx(sx) {
-			this._sx = sx;
-		}
+	set sx(sx) {
+		this._sx = sx;
+	}
 
-		set sy(sy) {
-			this._sy = sy;
-		}
+	set sy(sy) {
+		this._sy = sy;
+	}
 
-		set r(r) {
-			this._r = r;
-		}
+	set r(r) {
+		this._r = r;
+	}
 
-		set name(name) {
-			this._name = name;
-		}
+	set name(name) {
+		this._name = name;
+	}
 
-		makeName() {
+	makeName() {
         for (var i = 0; i < 5; i++) {
-			  	this.name += this.chars.charAt(Math.floor(Math.random() * this.chars.length));
+			this.name += this.chars.charAt(Math.floor(Math.random() * this.chars.length));
         }
 
-		    this.name += " ";
+		this.name += " ";
 
-		    for (var i = 0; i < 2; i++) {
-			  	this.name += this.nums.charAt(Math.floor(Math.random()* this.nums.length));
-		    }
+		for (i = 0; i < 2; i++) {
+			this.name += this.nums.charAt(Math.floor(Math.random()* this.nums.length));
+		}
 
-		    this.name = this.name.substring('undefined'.length);
+		this.name = this.name.substring('undefined'.length);
     }
 
     label() {
-		    fill(30, 30, 30);
-		    ellipse(this.sx, this.sy, 15, 15);
+		fill(30, 30, 30);
+		ellipse(this.sx, this.sy, 15, 15);
         rect(this.sx - 35, this.sy - 40, 70, 25, 3, 3, 3, 3);
         triangle(this.sx, this.sy - 10, this.sx - 7, this.sy - 16, this.sx + 7, this.sy - 16);
         fill(255);
@@ -333,18 +333,18 @@ class Planet {
     }
 
     update(speed) {
-		    this.z -= speed;
+		this.z -= speed;
         if (this.z < 1) {
-			  	this.z = width;
-        	this.x = random(-width / 2, width / 2);
-          this.y = random(-height / 2, height / 2);
+			this.z = width;
+			this.x = random(-width / 2, width / 2);
+			this.y = random(-height / 2, height / 2);
         }
     }
 
     show() {
-		    this.sx = map(this.x / this.z, 0, 1, 0, width);
-		    this.sy = map(this.y / this.z, 0, 1, 0, height);
-		    this.r = map(this.z, 0, width, 5, 0);
+		this.sx = map(this.x / this.z, 0, 1, 0, width);
+		this.sy = map(this.y / this.z, 0, 1, 0, height);
+		this.r = map(this.z, 0, width, 5, 0);
         fill(255);
         ellipse(this.sx, this.sy, this.r);
     }

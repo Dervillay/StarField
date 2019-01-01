@@ -83,7 +83,7 @@ class StarField {
 			this.stars[i].show();
 		}
 
-		for (var i = 0; i < this.planets.length; i++) {
+		for (i = 0; i < this.planets.length; i++) {
 			if ((Math.abs(this.planets[i].sx - this.mX) <= 10) && (Math.abs(this.planets[i].sy - this.mY) <= 10) && !mouseIsPressed && this.objectLabelling) {
 				this.planets[i].label();
 			}
@@ -92,13 +92,13 @@ class StarField {
 		}
 
 		if (mouseIsPressed) {
-			for (var i = 0; i < this.maxSpeed; i++) {
+			for (i = 0; i < this.maxSpeed; i++) {
 				if (this.speed <= this.maxSpeed) {
 					this.speed += 0.005;
 				}
 			}
 		} else if (mouseIsPressed === false) {
-			for (var i = 0; i < this.speed-0.3; i++) {
+			for (i = 0; i < this.speed-0.3; i++) {
 				if (this.speed > 0) {
 					this.speed -= 0.1;
 				}

@@ -7,7 +7,7 @@ class StarField {
 		this.starDensity = starDensity || 400;
 		this.planets = [];
 		this.planetDensity = planetDensity || 40;
-    this.objectLabelling = objectLabelling || false;
+    this.objectLabelling = objectLabelling || true;
 		this.mX = mouseX - width/2;
 		this.mY = mouseY - height/2;
 
@@ -26,7 +26,6 @@ class StarField {
 		}
 	}
 
-	
 	get speed() {
 		return this._speed;
 	}
@@ -124,17 +123,12 @@ class Planet {
         this.numerals = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"]
     }
 
-		makeName() {
-		    this.name = this.gods[Math.floor(Math.random() * this.gods.length)] + " " + this.numerals[Math.floor(Math.random() * this.numerals.length)];
-    }
-
-		/*
 		get x() {
 			return this._x;
 		}
 
 		get y() {
-			return this.__y;
+			return this._y;
 		}
 
 		get z() {
@@ -208,7 +202,10 @@ class Planet {
 		set name(name) {
 			this._name = name;
 		}
-		*/
+
+		makeName() {
+		    this.name = this.gods[Math.floor(Math.random() * this.gods.length)] + " " + this.numerals[Math.floor(Math.random() * this.numerals.length)];
+    }
 
     label() {
 		    fill(30, 30, 30);
@@ -253,21 +250,6 @@ class Planet {
         this.nums = "0123456789";
     }
 
-		makeName() {
-        for (var i = 0; i < 5; i++) {
-			  	this.name += this.chars.charAt(Math.floor(Math.random() * this.chars.length));
-        }
-
-		    this.name += " ";
-
-		    for (var i = 0; i < 2; i++) {
-			  	this.name += this.nums.charAt(Math.floor(Math.random()* this.nums.length));
-		    }
-
-		    this.name = this.name.substring('undefined'.length);
-    }
-
-		/*
 		get x() {
 			return this._x;
 		}
@@ -323,7 +305,20 @@ class Planet {
 		set name(name) {
 			this._name = name;
 		}
-		*/
+
+		makeName() {
+        for (var i = 0; i < 5; i++) {
+			  	this.name += this.chars.charAt(Math.floor(Math.random() * this.chars.length));
+        }
+
+		    this.name += " ";
+
+		    for (var i = 0; i < 2; i++) {
+			  	this.name += this.nums.charAt(Math.floor(Math.random()* this.nums.length));
+		    }
+
+		    this.name = this.name.substring('undefined'.length);
+    }
 
     label() {
 		    fill(30, 30, 30);

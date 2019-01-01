@@ -7,7 +7,7 @@ class StarField {
 		this.starDensity = starDensity || 400;
 		this.planets = [];
 		this.planetDensity = planetDensity || 40;
-    this.objectLabelling = objectLabelling || true;
+    this.objectLabelling = objectLabelling || false;
 		this.mX = mouseX - width/2;
 		this.mY = mouseY - height/2;
 

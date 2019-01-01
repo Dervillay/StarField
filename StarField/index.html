@@ -7,12 +7,18 @@
     <script src="../p5.js"></script>
     <script src="starfield.js"></script>
     <script src="index.js"></script>
+    <t5>
+      Welcome to StarField.
+    </t5>
     <p>
-      Welcome to StarField. Hold left click to accelerate through the void of space, or release to have a look around.
-      Hovering over stars and planets will reveal their names.
+      Hold left click to accelerate through the void of space, or release to have a look around.
+      Hovering over stars and planets will reveal their names (assuming object labelling is turned on).
     </p>
     <p>
       Using the sliders below, you can customise the Starfield. Press Generate to create a new instance with your chosen parameters.
+    </p>
+    <p>
+      Try resizing the window you're viewing this in, each StarField adapts dynamically to fill the screen.
     </p>
     <div>
       Star Density <input type="range" min="0" max="2000" value="400" class="slider" id="starDensity" align="left">
@@ -21,7 +27,7 @@
       &nbsp;&nbsp;&nbsp;&nbsp;
       Max Speed <input type="range" min="1" max="100" value="70" class="slider" id="maxSpeed" align="left">
       &nbsp;&nbsp;&nbsp;&nbsp;
-      Object Labelling <input type="checkbox" id="labellingOn" checked>
+      Object Labelling <input type="checkbox" id="labellingOn">
       &nbsp;&nbsp;&nbsp;&nbsp;
     <button id="generate" align="">Generate</button>
   </div>

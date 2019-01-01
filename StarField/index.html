@@ -7,29 +7,27 @@
     <script src="../p5.js"></script>
     <script src="starfield.js"></script>
     <script src="index.js"></script>
-    <t5>
+  </head>
+  <body>
+    <p>
       Welcome to StarField.
-    </t5>
+    </p>
     <p>
       Hold left click to accelerate through the void of space, or release to have a look around.
-      Hovering over stars and planets will reveal their names (assuming object labelling is turned on).
-    </p>
-    <p>
-      Using the sliders below, you can customise the Starfield. Press Generate to create a new instance with your chosen parameters.
-    </p>
-    <p>
+      Hovering over stars and planets will reveal their names (assuming object labelling is turned on).<br>
+      Using the sliders below, you can customise the Starfield. Press Generate to create a new instance with your chosen parameters.<br>
       Try resizing the window you're viewing this in, each StarField adapts dynamically to fill the screen.
     </p>
     <div>
-      Star Density <input type="range" min="0" max="2000" value="400" class="slider" id="starDensity" align="left">
+      Star Density <input type="range" min="0" max="2000" value="400" class="slider" id="starDensity">
       &nbsp;&nbsp;&nbsp;&nbsp;
-      Planet Density <input type="range" min="0" max="2000" value="40" class="slider" id="planetDensity" align="left">
+      Planet Density <input type="range" min="0" max="2000" value="40" class="slider" id="planetDensity">
       &nbsp;&nbsp;&nbsp;&nbsp;
-      Max Speed <input type="range" min="1" max="100" value="70" class="slider" id="maxSpeed" align="left">
+      Max Speed <input type="range" min="1" max="100" value="70" class="slider" id="maxSpeed">
       &nbsp;&nbsp;&nbsp;&nbsp;
       Object Labelling <input type="checkbox" id="labellingOn">
       &nbsp;&nbsp;&nbsp;&nbsp;
-    <button id="generate" align="">Generate</button>
+    <button id="generate">Generate</button>
   </div>
     <script type="text/javascript">
       var starDensity = document.getElementById("starDensity").value;
@@ -48,5 +46,5 @@
 
       document.getElementById("generate").addEventListener("click", generate);
     </script>
-  </head>
+  </body>
 </html>

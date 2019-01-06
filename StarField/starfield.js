@@ -17,12 +17,10 @@ class StarField {
 
 		for (var i = 0; i < this.starDensity; i++) {
 			this.stars[i] = new Star();
-			this.stars[i].makeName();
 		}
 
 		for (i = 0; i < this.planetDensity; i++) {
 			this.planets[i] = new Planet();
-			this.planets[i].makeName();
 		}
 	}
 
@@ -120,7 +118,8 @@ class Planet {
         this.sy = map(this.y / this.z, 0, 1, 0, height);
         this.r = map(this.z, 0, width, 10, 0);
         this.gods = ["Zeus", "Hera", "Poseidon", "Hades", "Athena", "Apollo", "Artemis", "Aphrodite", "Hermes", "Ares" ];
-        this.numerals = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"]
+        this.numerals = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"];
+				this.name = this.gods[Math.floor(Math.random() * this.gods.length)] + " " + this.numerals[Math.floor(Math.random() * this.numerals.length)];
     }
 
 	get x() {
@@ -203,10 +202,6 @@ class Planet {
 		this._name = name;
 	}
 
-	makeName() {
-		this.name = this.gods[Math.floor(Math.random() * this.gods.length)] + " " + this.numerals[Math.floor(Math.random() * this.numerals.length)];
-    }
-
     label() {
 		fill(30, 30, 30);
         ellipse(this.sx, this.sy, 15, 15);
@@ -248,6 +243,18 @@ class Planet {
         this.r = map(this.z, 0, width, 5, 0);
         this.chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
         this.nums = "0123456789";
+
+				for (var i = 0; i < 5; i++) {
+					this.name += this.chars.charAt(Math.floor(Math.random() * this.chars.length));
+				}
+
+				this.name += " ";
+
+				for (i = 0; i < 2; i++) {
+					this.name += this.nums.charAt(Math.floor(Math.random()* this.nums.length));
+				}
+
+				this.name = this.name.substring('undefined'.length);
     }
 
 	get x() {
@@ -305,20 +312,6 @@ class Planet {
 	set name(name) {
 		this._name = name;
 	}
-
-	makeName() {
-        for (var i = 0; i < 5; i++) {
-			this.name += this.chars.charAt(Math.floor(Math.random() * this.chars.length));
-        }
-
-		this.name += " ";
-
-		for (i = 0; i < 2; i++) {
-			this.name += this.nums.charAt(Math.floor(Math.random()* this.nums.length));
-		}
-
-		this.name = this.name.substring('undefined'.length);
-    }
 
     label() {
 		fill(30, 30, 30);

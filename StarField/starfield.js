@@ -66,9 +66,14 @@ class StarField {
 
 
 
-	draw() {
-		fill(0, 100);
-		rect(0, 0, width, height);
+	draw(g) {
+		if (g) {
+			g.fill(0, 100);
+			g.rect(0, 0, width, height);
+		} else {
+			fill(0, 100);
+			rect(0, 0, width, height);
+		}
 		translate(width / 2, height / 2);
 		this.mX = mouseX - width/2;
 		this.mY = mouseY - height/2;
@@ -117,7 +122,7 @@ class Planet {
         this.sx = map(this.x / this.z, 0, 1, 0, width);
         this.sy = map(this.y / this.z, 0, 1, 0, height);
         this.r = map(this.z, 0, width, 10, 0);
-        this.gods = ["Zeus", "Hera", "Poseidon", "Hades", "Athena", "Apollo", "Artemis", "Aphrodite", "Hermes", "Ares" ];
+        this.gods = ["Zeus", "Hera", "Poseidon", "Hades", "Athena", "Apollo", "Artemis", "Aphrodite", "Hermes", "Ares"];
         this.numerals = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"];
 				this.name = this.gods[Math.floor(Math.random() * this.gods.length)] + " " + this.numerals[Math.floor(Math.random() * this.numerals.length)];
     }
@@ -203,7 +208,20 @@ class Planet {
 	}
 
     label() {
-		fill(30, 30, 30);
+			/*
+			if (g) {
+				g.fill(30, 30, 30);
+        g.ellipse(this.sx, this.sy, 15, 15);
+        g.rect(this.sx - 35, this.sy - 40, 70, 25, 3, 3, 3, 3);
+        g.triangle(this.sx, this.sy - 10, this.sx - 7, this.sy - 16, this.sx + 7, this.sy - 16);
+        g.fill(255);
+        g.textSize(12);
+        g.textFont("Arial");
+        g.textAlign(CENTER);
+        g.text(this.name, this.sx, this.sy - 23)
+			} else {
+			*/
+				fill(30, 30, 30);
         ellipse(this.sx, this.sy, 15, 15);
         rect(this.sx - 35, this.sy - 40, 70, 25, 3, 3, 3, 3);
         triangle(this.sx, this.sy - 10, this.sx - 7, this.sy - 16, this.sx + 7, this.sy - 16);
@@ -212,6 +230,7 @@ class Planet {
         textFont("Arial");
         textAlign(CENTER);
         text(this.name, this.sx, this.sy - 23)
+//			}
     }
 
 	update(speed) {
@@ -224,18 +243,25 @@ class Planet {
 	}
 
     show() {
-		this.sx = map(this.x / this.z, 0, 1, 0, width);
-		this.sy = map(this.y / this.z, 0, 1, 0, height);
-		this.r = map(this.z, 0, width, 10, 0);
-		fill(this.red, this.green, this.blue);
-		ellipse(this.sx, this.sy, this.r);
+			this.sx = map(this.x / this.z, 0, 1, 0, width);
+			this.sy = map(this.y / this.z, 0, 1, 0, height);
+			this.r = map(this.z, 0, width, 10, 0);
+			/*
+			if (g) {
+				g.fill(this.red, this.green, this.blue);
+				g.ellipse(this.sx, this.sy, this.r);
+			} else {
+			*/
+				fill(this.red, this.green, this.blue);
+				ellipse(this.sx, this.sy, this.r);
+//			}
     }
 }
 
- class Star {
+class Star {
 
-    constructor() {
-		this.x = random(-width / 2, width / 2);
+	constructor() {
+				this.x = random(-width / 2, width / 2);
         this.y = random(-height / 2, height / 2);
         this.z = random(width);
         this.sx = map(this.x / this.z, 0, 1, 0, width);
@@ -314,8 +340,21 @@ class Planet {
 	}
 
     label() {
-		fill(30, 30, 30);
-		ellipse(this.sx, this.sy, 15, 15);
+			/*
+			if (g) {
+				g.fill(30, 30, 30);
+				g.ellipse(this.sx, this.sy, 15, 15);
+        g.rect(this.sx - 35, this.sy - 40, 70, 25, 3, 3, 3, 3);
+        g.triangle(this.sx, this.sy - 10, this.sx - 7, this.sy - 16, this.sx + 7, this.sy - 16);
+        g.fill(255);
+        g.textSize(12);
+        g.textFont("Arial");
+        g.textAlign(CENTER);
+        g.text(this.name, this.sx, this.sy - 23)
+			} else {
+				*/
+				fill(30, 30, 30);
+				ellipse(this.sx, this.sy, 15, 15);
         rect(this.sx - 35, this.sy - 40, 70, 25, 3, 3, 3, 3);
         triangle(this.sx, this.sy - 10, this.sx - 7, this.sy - 16, this.sx + 7, this.sy - 16);
         fill(255);
@@ -323,6 +362,7 @@ class Planet {
         textFont("Arial");
         textAlign(CENTER);
         text(this.name, this.sx, this.sy - 23)
+//			}
     }
 
     update(speed) {
@@ -335,10 +375,17 @@ class Planet {
     }
 
     show() {
-		this.sx = map(this.x / this.z, 0, 1, 0, width);
-		this.sy = map(this.y / this.z, 0, 1, 0, height);
-		this.r = map(this.z, 0, width, 5, 0);
-        fill(255);
-        ellipse(this.sx, this.sy, this.r);
+			this.sx = map(this.x / this.z, 0, 1, 0, width);
+			this.sy = map(this.y / this.z, 0, 1, 0, height);
+			this.r = map(this.z, 0, width, 5, 0);
+			/*
+			if (g) {
+	      g.fill(255);
+	      g.ellipse(this.sx, this.sy, this.r);
+			} else {
+				*/
+				fill(255);
+				ellipse(this.sx, this.sy, this.r);
+//			}
     }
 }

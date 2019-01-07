@@ -7,13 +7,13 @@ The component consists of 3 classes: **StarField**, **Planet** and **Star**:
 ### StarField
 
 #### constructor
-  The constructor takes 4 optional parameters, *starDensity*, *planetDensity*, *maxSpeed* and *objectLabelling*, expecting a boolean value for *objectLabelling* and integers for all others. If no values are specified, then they will default to *50*, *400*, *40* and *false* respectively. These values are then passed to variables of the same name. The constructor then initialises multiple other variables, *speed*, *mX*, *mY*, and two empty lists named *stars* and *planets*.  
+  The constructor takes 4 optional parameters, `starDensity`, `planetDensity`, `maxSpeed` and `objectLabelling`, expecting a boolean value for `objectLabelling` and integers for all others. If no values are specified, then they will default to 50, 400, 40 and false respectively. These values are then passed to variables of the same name. The constructor then initialises multiple other variables, `speed`, `mX`, `mY`, and two empty lists named `stars` and `planets`.  
   
-  *speed* is used to set the default scrolling speed of the StarField when the mouse is not pressed, by default, this is set to 1. *mX* and *mY* represent translated versions of the current x and y coordinates of the mouse, where mX is the current x coordinate minus half the width of the window the component is rendered in, and mY is the current y coordinate minus half the height of the window. (The reason for this translation is explained in *draw()*)  
+  `speed` is used to set the default scrolling speed of the StarField when the mouse is not pressed, by default, this is set to 1. `mX` and `mY` represent translated versions of the current x and y coordinates of the mouse, where mX is the current x coordinate minus half the width of the window the component is rendered in, and mY is the current y coordinate minus half the height of the window. (The reason for this translation is explained in `draw()`  
   
-  The background is then set to the default greyscale value of 100 with *background(100)*, producing a translucent black, allowing us to achieve the trailing effect behind stars and planets when the component is rendered.  
+  The background is then set to the default greyscale value of 100 with `background(100)`, producing a translucent black, allowing us to achieve the trailing effect behind stars and planets when the component is rendered.  
   
-  *noStroke()* stops the component from drawing outlines.
+  `noStroke()` stops the component from drawing outlines.
    
   *createCanvas(windowWidth, windowHeight)* initialises a canvas with width and height equal to that of the window that the component is being initialised in. 
   
@@ -49,9 +49,39 @@ The *draw* function begins by drawing a translucent greyscale rectangle the size
 
 Initialises the variables *x*, *y*, *z*, *red*, *green*, *blue*, *sx*, *sy*, *r*, *gods*, *numerals* and *name*.
 *x*, *y* and *z* are randomly generated numbers, representing the 3D coordinates of each graphic, with *x* between -width/2 and width/2, *y* between -height/2 and height/2, and *z* between 0 to width, where height and width are the height and width of the canvas.  
+
 *red*, *green* and *blue* are all RGB values between 0 and 130 (stopping the planets from becoming too vibrant) and determining the colour of the planet.
+
 *sx* maps the value of *x/z* from between 0 and 1, to between 0 and *width*. Similarly *sy* maps the value of *y/z* from between 0 and 1 to between 0 and *height*. These mappings allow stars and planets to be rendered in positions as if they were moving towards the screen in 3D space, creating the 3D, scrolling feel of the StarField.
-*r* maps *z* from between 0 and width to 10 and 0, allowing the radius of the graphics to change in relation to *z*, creating the effect that they are moving towards the screen.
+
+*r* maps *z* from between 0 and width to between 10 and 0, allowing the radius of the graphics to change in relation to *z*, creating the effect that they are moving towards the screen.
+
+The variables *gods* and *numerals* are lists of strings containing the names of Greek gods and Roman Numerals, respectively. These lists are used to randomly generate the names of planets.
+
+*name* is where each planet's name is generated. Using the *random* method of JavaScript's Math object, random numbers corresponding to the indices of list elements are generated, and *name* is created as a concatenation of the god and numeral at the generated indices.
+
+#### getters and setters
+Getters and setters are defined for all variables using the format depicted above in the **StarField** class.
+
+#### label
+The label method uses *fill(30)* to set the fill colour to a translucent grey. Then *ellipse(this.sx, this.sy, 15)* is called, drawing a circel with radius 15 and centre at x and y positions equal to *sx* and *sy*, which are the current coordinates of the planet.
+
+*rect(this.sx - 35, this.sy - 40, 70, 25, 3, 3, 3, 3)* is used to draw a rectangle above the planet, which is then used to hold the text of the planet's name. Similarly *triangle(this.sx, this.sy - 10, this.sx - 7, this.sy - 16, this.sx + 7, this.sy - 16)* is used to draw a triangle below the rectangle, giving the graphics the appearance of a label. 
+
+*fill(255)* is used to set the fill colour to white. *textSize(12)* sets the text size to 12, *textFont("Arial")* sets the font to Arial, and *textAlign(CENTER)* makes it such that any text is drawn with it's center at the x and y coordinates provided.
+
+*text(this.name, this.sx, this.sy -23)* draws the planet's name at the centre of the previously drawn rectangle. 
+
+#### update
+*z* is decremented by the current value of *speed*, allowing each planet to move towards the screen proportionally to the value of speed. Once *z* becomes less than 1 (i.e the planet has appeared to reach the screen) *x*, *y* and *z* are then reset to new values in the same way as before in the constructor, so the next time the planet is drawn it will appear to be in the distance as a new graphic. By doing this, the StarField appears endless and continues indefinitely. 
+
+#### show
+*sx*, *sy* and *r* are mapped as before in the constructor to update the 3D position of each planet. *fill(this.red, this.green, this.blue)* is used to set the fill colour equal to the random RGB value generated in the constructor, and *ellipse(this.sx, this.sy, this.r)* is used to draw the planet with centre at the coordinates represented by *sx* and *sy* and radius *r*.
+
+### Star
+
+#### constructor
+
 
 
 

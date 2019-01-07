@@ -44,6 +44,14 @@ class StarField {
 		return this._objectLabelling;
 	}
 
+	get mX() {
+		return this._mX;
+	}
+
+	get mY() {
+		return this._mY;
+	}
+
 	set speed(speed) {
 		this._speed = speed;
 	}
@@ -64,6 +72,14 @@ class StarField {
 		this._objectLabelling = objectLabelling;
 	}
 
+	set mX(mX) {
+		this._mX = mX;
+	}
+
+	set mY(mY) {
+		this._mY = mY;
+	}
+
 
 
 	draw(g) {
@@ -74,7 +90,7 @@ class StarField {
 			fill(0, 100);
 			rect(0, 0, width, height);
 		}
-		translate(width / 2, height / 2);
+		translate(width/2, height/2);
 		this.mX = mouseX - width/2;
 		this.mY = mouseY - height/2;
 
@@ -221,7 +237,7 @@ class Planet {
         g.text(this.name, this.sx, this.sy - 23)
 			} else {
 			*/
-				fill(30, 30, 30);
+				fill(30);
         ellipse(this.sx, this.sy, 15, 15);
         rect(this.sx - 35, this.sy - 40, 70, 25, 3, 3, 3, 3);
         triangle(this.sx, this.sy - 10, this.sx - 7, this.sy - 16, this.sx + 7, this.sy - 16);

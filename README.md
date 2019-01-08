@@ -1,6 +1,8 @@
 # StarField
 An adapted component from a p5.js project, originally forked from Ning Shen's [Starfield](https://www.openprocessing.org/sketch/429790), licensed under [Creative Commons Attribution-ShareAlike 3.0](https://creativecommons.org/licenses/by-sa/3.0/)
 
+# Methods and Parameters
+
 ## starfield.js
 The component consists of 3 classes: **StarField**, **Planet** and **Star**:
 
@@ -100,6 +102,11 @@ This method is also identical to that of **Planet**, and is explained above.
 #### show()
 This method is very similar to that of **Planet** but uses `fill(255)` as opposed to `fill(this.red, this.green, this.blue)` to set the fill colour to white, since all stars are the same colour.
 
+# Example 
+
+## index.html
+
+index.html consists of HTML form controls that allow interaction with the DOM. 3 sliders exist for **Star Density**, **Planet Density** and **Max Speed**, each of which control the numerical value of the parameters fed to an instance of the `StarField` class. **Star Density** allows a range between 0 and 2000 defaulting at 400, whereas **Planet Density** takes values of the same range, but defaults at 40. **Max Speed** can take anywhere from 1 to 100, but defaults at 70 to avoid the sketch behaving too erratically.
 
 
 

@@ -108,6 +108,38 @@ This method is very similar to that of **Planet** but uses `fill(255)` as oppose
 
 index.html consists of HTML form controls that allow interaction with the DOM. 3 sliders exist for **Star Density**, **Planet Density** and **Max Speed**, each of which control the numerical value of the parameters fed to an instance of the `StarField` class. **Star Density** allows a range between 0 and 2000 defaulting at 400, whereas **Planet Density** takes values of the same range, but defaults at 40. **Max Speed** can take anywhere from 1 to 100, but defaults at 70 to avoid the sketch behaving too erratically.
 
+Since the **StarField** populates the `stars` and `planets` lists in the constructor, there is a generate button that creates a new instance of the sketch with the parameters specified by the form controls. It does this by using an event listener to check for a button press, and when it recieves one, runs the JavaScript function `generate()`. This retrieves the current numerical value of the form controls, stores them in variables, and then passes these variables as parameters to the `setup()` function in **index.js**, creating a new instance of **StarField** with the values specified. The code for doing so is as follows
+~~~~
+var starDensity = document.getElementById("starDensity").value;
+var planetDensity = document.getElementById("planetDensity").value;
+var maxSpeed = document.getElementById("maxSpeed").value;
+var labellingOn = document.getElementById("labellingOn").checked;
+
+function generate() {
+    starDensity = document.getElementById("starDensity").value;
+    planetDensity = document.getElementById("planetDensity").value;
+    maxSpeed = document.getElementById("maxSpeed").value;
+    labellingOn = document.getElementById("labellingOn").checked;
+    setup(starDensity, planetDensity, maxSpeed, labellingOn);
+      }
+~~~~
+
+## index.js
+ The component can be easily embedded in an HTML page through the use of an additional **index.js** file. In **index.html** we import the **starfield.js** code containing the class, allowing us to define an instance of it in **index.js** as follows
+~~~~
+var s;
+
+
+function setup(starDensity, planetDensity, maxSpeed, objectLabelling) {
+    s = new StarField(starDensity, planetDensity, maxSpeed, objectLabelling);
+}
+
+function draw() {
+  s.draw();
+}
+~~~~
+This allows the use of the generate button (mentioned above) in **index.html**, and the creation of new instances of starfield through calls to `setup()`.
+
 
 
 

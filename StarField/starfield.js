@@ -369,7 +369,7 @@ class Star {
         g.text(this.name, this.sx, this.sy - 23)
 			} else {
 				*/
-				fill(30, 30, 30);
+				fill(30);
 				ellipse(this.sx, this.sy, 15, 15);
         rect(this.sx - 35, this.sy - 40, 70, 25, 3, 3, 3, 3);
         triangle(this.sx, this.sy - 10, this.sx - 7, this.sy - 16, this.sx + 7, this.sy - 16);

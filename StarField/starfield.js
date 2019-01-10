@@ -20,9 +20,6 @@ class StarField {
 			createCanvas(windowWidth, windowHeight);
 		}
 
-		background(0);
-    noStroke();
-
 		for (var i = 0; i < this.starDensity; i++) {
 			this.stars[i] = new Star();
 		}
@@ -30,6 +27,9 @@ class StarField {
 		for (i = 0; i < this.planetDensity; i++) {
 			this.planets[i] = new Planet();
 		}
+
+		background(0);
+		noStroke();
 	}
 
 	get speed() {
@@ -90,8 +90,7 @@ class StarField {
 
 
 
-	draw(g) {
-		noStroke();
+	draw() {
 		if (this.g) {
 			background(255);
 			this.g.background(0,100);
@@ -378,11 +377,11 @@ class Star {
 
     update(speed) {
 		this.z -= speed;
-        if (this.z < 1) {
-			this.z = width;
-			this.x = random(-width / 2, width / 2);
-			this.y = random(-height / 2, height / 2);
-        }
+      if (this.z < 1) {
+				this.z = width;
+				this.x = random(-width / 2, width / 2);
+				this.y = random(-height / 2, height / 2);
+      }
     }
 
     show(g) {

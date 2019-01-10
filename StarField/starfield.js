@@ -1,154 +1,154 @@
 class StarField {
 
-	constructor(starDensity, planetDensity, maxSpeed, objectLabelling, cube, sphere) {
-		this.speed = 1;
-		this.maxSpeed = maxSpeed || 50;
-		this.stars = [];
-		this.starDensity = starDensity || 400;
-		this.planets = [];
-		this.planetDensity = planetDensity || 40;
-    this.objectLabelling = objectLabelling || false;
-		this.mX = mouseX - width/2;
-		this.mY = mouseY - height/2;
-		this.cube = cube;
-		this.sphere = sphere;
+    constructor(starDensity, planetDensity, maxSpeed, objectLabelling, cube, sphere) {
+        this.speed = 1;
+        this.maxSpeed = maxSpeed || 50;
+        this.stars = [];
+        this.starDensity = starDensity || 400;
+        this.planets = [];
+        this.planetDensity = planetDensity || 40;
+        this.objectLabelling = objectLabelling || false;
+        this.mX = mouseX - width/2;
+        this.mY = mouseY - height/2;
+        this.cube = cube;
+        this.sphere = sphere;
 
-		if(this.cube || this.sphere) {
-			createCanvas(windowWidth, windowHeight, WEBGL);
-			this.g = createGraphics(windowWidth, windowHeight);
-		} else {
-			createCanvas(windowWidth, windowHeight);
-		}
+        if(this.cube || this.sphere) {
+            createCanvas(windowWidth, windowHeight, WEBGL);
+            this.g = createGraphics(windowWidth, windowHeight);
+        } else {
+            createCanvas(windowWidth, windowHeight);
+        }
 
-		for (var i = 0; i < this.starDensity; i++) {
-			this.stars[i] = new Star();
-		}
+        for (var i = 0; i < this.starDensity; i++) {
+            this.stars[i] = new Star();
+        }
 
-		for (i = 0; i < this.planetDensity; i++) {
-			this.planets[i] = new Planet();
-		}
+        for (i = 0; i < this.planetDensity; i++) {
+            this.planets[i] = new Planet();
+        }
 
-		background(0);
-		noStroke();
-	}
+        background(0);
+        noStroke();
+    }
 
-	get speed() {
-		return this._speed;
-	}
+    get speed() {
+        return this._speed;
+    }
 
-	get maxSpeed() {
-		return this._maxSpeed;
-	}
+    get maxSpeed() {
+        return this._maxSpeed;
+    }
 
-	get starDensity() {
-		return this._starDensity;
-	}
+    get starDensity() {
+        return this._starDensity;
+    }
 
-	get planetDensity() {
-		return this._planetDensity;
-	}
+    get planetDensity() {
+        return this._planetDensity;
+    }
 
-	get objectLabelling() {
-		return this._objectLabelling;
-	}
+    get objectLabelling() {
+        return this._objectLabelling;
+    }
 
-	get mX() {
-		return this._mX;
-	}
+    get mX() {
+        return this._mX;
+    }
 
-	get mY() {
-		return this._mY;
-	}
+    get mY() {
+        return this._mY;
+    }
 
-	set speed(speed) {
-		this._speed = speed;
-	}
+    set speed(speed) {
+        this._speed = speed;
+    }
 
-	set maxSpeed(maxSpeed) {
-		this._maxSpeed = maxSpeed;
-	}
+    set maxSpeed(maxSpeed) {
+        this._maxSpeed = maxSpeed;
+    }
 
-	set starDensity(starDensity) {
-		this._starDensity = starDensity;
-	}
+    set starDensity(starDensity) {
+        this._starDensity = starDensity;
+    }
 
-	set planetDensity(planetDensity) {
-		this._planetDensity = planetDensity;
-	}
+    set planetDensity(planetDensity) {
+        this._planetDensity = planetDensity;
+    }
 
-	set objectLabelling(objectLabelling) {
-		this._objectLabelling = objectLabelling;
-	}
+    set objectLabelling(objectLabelling) {
+        this._objectLabelling = objectLabelling;
+    }
 
-	set mX(mX) {
-		this._mX = mX;
-	}
+    set mX(mX) {
+        this._mX = mX;
+    }
 
-	set mY(mY) {
-		this._mY = mY;
-	}
+    set mY(mY) {
+        this._mY = mY;
+    }
 
 
 
-	draw() {
-		if (this.g) {
-			background(255);
-			this.g.background(0,100);
-		} else {
-			background(0, 100);
-			translate(width/2, height/2);
-		}
+    draw() {
+        if (this.g) {
+            background(255);
+            this.g.background(0,100);
+        } else {
+            background(0, 100);
+            translate(width/2, height/2);
+        }
 
-		this.mX = mouseX - width/2;
-		this.mY = mouseY - height/2;
+        this.mX = mouseX - width/2;
+        this.mY = mouseY - height/2;
 
-		for (var i = 0; i < this.stars.length; i++) {
-			if ((Math.abs(this.stars[i].sx - this.mX) <= 10) && (Math.abs(this.stars[i].sy - this.mY) <= 10) && !mouseIsPressed && this.objectLabelling) {
-				this.stars[i].label(this.g);
-			}
-			this.stars[i].update(this.speed);
-			this.stars[i].show(this.g);
-		}
+        for (var i = 0; i < this.stars.length; i++) {
+            if ((Math.abs(this.stars[i].sx - this.mX) <= 10) && (Math.abs(this.stars[i].sy - this.mY) <= 10) && !mouseIsPressed && this.objectLabelling) {
+                this.stars[i].label(this.g);
+            }
+            this.stars[i].update(this.speed);
+            this.stars[i].show(this.g);
+        }
 
-		for (i = 0; i < this.planets.length; i++) {
-			if ((Math.abs(this.planets[i].sx - this.mX) <= 10) && (Math.abs(this.planets[i].sy - this.mY) <= 10) && !mouseIsPressed && this.objectLabelling) {
-				this.planets[i].label(this.g);
-			}
-			this.planets[i].update(this.speed);
-			this.planets[i].show(this.g);
-		}
+        for (i = 0; i < this.planets.length; i++) {
+            if ((Math.abs(this.planets[i].sx - this.mX) <= 10) && (Math.abs(this.planets[i].sy - this.mY) <= 10) && !mouseIsPressed && this.objectLabelling) {
+                this.planets[i].label(this.g);
+            }
+            this.planets[i].update(this.speed);
+            this.planets[i].show(this.g);
+        }
 
-		if (mouseIsPressed) {
-			for (i = 0; i < this.maxSpeed; i++) {
-				if (this.speed <= this.maxSpeed) {
-					this.speed += 0.005;
-				}
-			}
-		} else if (mouseIsPressed === false) {
-			for (i = 0; i < this.speed-0.3; i++) {
-				if (this.speed > 0) {
-					this.speed -= 0.1;
-				}
-			}
-		}
+        if (mouseIsPressed) {
+            for (i = 0; i < this.maxSpeed; i++) {
+                if (this.speed <= this.maxSpeed) {
+                    this.speed += 0.005;
+                }
+            }
+        } else if (mouseIsPressed === false) {
+            for (i = 0; i < this.speed-0.3; i++) {
+                if (this.speed > 0) {
+                    this.speed -= 0.1;
+                }
+            }
+        }
 
-		if(this.g) {
-			rotateX(frameCount * 0.01);
-			rotateY(frameCount * 0.01);
-			texture(this.g);
-			if(this.cube) {
-				box(windowWidth/2);
-			} else {
-				sphere(windowWidth/3);
-			}
-		}
-	}
+        if(this.g) {
+            rotateX(frameCount * 0.01);
+            rotateY(frameCount * 0.01);
+            texture(this.g);
+            if(this.cube) {
+                box(windowWidth/2);
+            } else {
+                sphere(windowWidth/3);
+            }
+        }
+    }
 }
 
 class Planet {
 
-	constructor () {
-		this.x = random(-width / 2, width / 2);
+    constructor () {
+        this.x = random(-width / 2, width / 2);
         this.y = random(-height / 2, height / 2);
         this.z = random(width);
         this.red = random(130);
@@ -157,243 +157,243 @@ class Planet {
         this.sx = map(this.x / this.z, 0, 1, 0, width);
         this.sy = map(this.y / this.z, 0, 1, 0, height);
         this.r = map(this.z, 0, width, 10, 0);
-        this.gods = ["Zeus", "Hera", "Poseidon", "Hades", "Athena", "Apollo", "Artemis", "Aphrodite", "Hermes", "Ares"];
-        this.numerals = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"];
-				this.name = this.gods[Math.floor(Math.random() * this.gods.length)] + " " + this.numerals[Math.floor(Math.random() * this.numerals.length)];
+        this.gods = ['Zeus', 'Hera', 'Poseidon', 'Hades', 'Athena', 'Apollo', 'Artemis', 'Aphrodite', 'Hermes', 'Ares'];
+        this.numerals = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X'];
+        this.name = this.gods[Math.floor(Math.random() * this.gods.length)] + ' ' + this.numerals[Math.floor(Math.random() * this.numerals.length)];
     }
 
-	get x() {
-		return this._x;
-	}
+    get x() {
+        return this._x;
+    }
 
-	get y() {
-		return this._y;
-	}
+    get y() {
+        return this._y;
+    }
 
-	get z() {
-		return this._z;
-	}
+    get z() {
+        return this._z;
+    }
 
-	get red() {
-		return this._red;
-	}
+    get red() {
+        return this._red;
+    }
 
-	get blue() {
-		return this._blue;
-	}
+    get blue() {
+        return this._blue;
+    }
 
-	get green() {
-		return this._green;
-	}
+    get green() {
+        return this._green;
+    }
 
-	get sx() {
-		return this._sx;
-	}
+    get sx() {
+        return this._sx;
+    }
 
-	get sy() {
-		return this._sy;
-	}
+    get sy() {
+        return this._sy;
+    }
 
-	get r() {
-		return this._r;
-	}
+    get r() {
+        return this._r;
+    }
 
-	get name() {
-		return this._name;
-	}
+    get name() {
+        return this._name;
+    }
 
-	set x(x) {
-		this._x = x;
-	}
+    set x(x) {
+        this._x = x;
+    }
 
-	set y(y) {
-		this._y = y;
-	}
+    set y(y) {
+        this._y = y;
+    }
 
-	set z(z) {
-		this._z = z;
-	}
+    set z(z) {
+        this._z = z;
+    }
 
-	set red(red) {
-		this._red = red;
-	}
+    set red(red) {
+        this._red = red;
+    }
 
-	set blue(blue) {
-		this._blue = blue;
-	}
+    set blue(blue) {
+        this._blue = blue;
+    }
 
-	set green(green) {
-		this._green = green;
-	}
+    set green(green) {
+        this._green = green;
+    }
 
-	set sx(sx) {
-		this._sx = sx;
-	}
+    set sx(sx) {
+        this._sx = sx;
+    }
 
-	set sy(sy) {
-		this._sy = sy;
-	}
+    set sy(sy) {
+        this._sy = sy;
+    }
 
-	set r(r) {
-		this._r = r;
-	}
+    set r(r) {
+        this._r = r;
+    }
 
-	set name(name) {
-		this._name = name;
-	}
+    set name(name) {
+        this._name = name;
+    }
 
     label(g) {
-			if(!g) {
-				fill(30);
-        ellipse(this.sx, this.sy, 15, 15);
-        rect(this.sx - 35, this.sy - 40, 70, 25, 3, 3, 3, 3);
-        triangle(this.sx, this.sy - 10, this.sx - 7, this.sy - 16, this.sx + 7, this.sy - 16);
-        fill(255);
-        textSize(12);
-        textFont("Arial");
-        textAlign(CENTER);
-        text(this.name, this.sx, this.sy - 23)
-			}
+        if(!g) {
+            fill(30);
+            ellipse(this.sx, this.sy, 15, 15);
+            rect(this.sx - 35, this.sy - 40, 70, 25, 3, 3, 3, 3);
+            triangle(this.sx, this.sy - 10, this.sx - 7, this.sy - 16, this.sx + 7, this.sy - 16);
+            fill(255);
+            textSize(12);
+            textFont('Arial');
+            textAlign(CENTER);
+            text(this.name, this.sx, this.sy - 23);
+        }
     }
 
-	update(speed) {
-		this.z -= speed;
-		if (this.z < 1) {
-			this.z = width;
-			this.x = random(-width / 2, width / 2);
-			this.y = random(-height / 2, height / 2);
-		}
-	}
+    update(speed) {
+        this.z -= speed;
+        if (this.z < 1) {
+            this.z = width;
+            this.x = random(-width / 2, width / 2);
+            this.y = random(-height / 2, height / 2);
+        }
+    }
 
     show(g) {
-			this.sx = map(this.x / this.z, 0, 1, 0, width);
-			this.sy = map(this.y / this.z, 0, 1, 0, height);
-			this.r = map(this.z, 0, width, 10, 0);
+        this.sx = map(this.x / this.z, 0, 1, 0, width);
+        this.sy = map(this.y / this.z, 0, 1, 0, height);
+        this.r = map(this.z, 0, width, 10, 0);
 
-			if (g) {
-				g.fill(this.red, this.green, this.blue);
-				g.ellipse(this.sx, this.sy, this.r + 3);
-			} else {
-				fill(this.red, this.green, this.blue);
-				ellipse(this.sx, this.sy, this.r);
-			}
+        if (g) {
+            g.fill(this.red, this.green, this.blue);
+            g.ellipse(this.sx, this.sy, this.r + 3);
+        } else {
+            fill(this.red, this.green, this.blue);
+            ellipse(this.sx, this.sy, this.r);
+        }
     }
 }
 
 class Star {
 
-	constructor() {
-				this.x = random(-width / 2, width / 2);
+    constructor() {
+        this.x = random(-width / 2, width / 2);
         this.y = random(-height / 2, height / 2);
         this.z = random(width);
         this.sx = map(this.x / this.z, 0, 1, 0, width);
         this.sy = map(this.y / this.z, 0, 1, 0, height);
         this.r = map(this.z, 0, width, 5, 0);
-        this.chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-        this.nums = "0123456789";
+        this.chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+        this.nums = '0123456789';
 
-				for (var i = 0; i < 5; i++) {
-					this.name += this.chars.charAt(Math.floor(Math.random() * this.chars.length));
-				}
+        for (var i = 0; i < 5; i++) {
+            this.name += this.chars.charAt(Math.floor(Math.random() * this.chars.length));
+        }
 
-				this.name += " ";
+        this.name += ' ';
 
-				for (i = 0; i < 2; i++) {
-					this.name += this.nums.charAt(Math.floor(Math.random()* this.nums.length));
-				}
+        for (i = 0; i < 2; i++) {
+            this.name += this.nums.charAt(Math.floor(Math.random()* this.nums.length));
+        }
 
-				this.name = this.name.substring('undefined'.length);
+        this.name = this.name.substring('undefined'.length);
     }
 
-	get x() {
-		return this._x;
-	}
+    get x() {
+        return this._x;
+    }
 
-	get y() {
-		return this._y;
-	}
+    get y() {
+        return this._y;
+    }
 
-	get z() {
-		return this._z;
-	}
+    get z() {
+        return this._z;
+    }
 
-	get sx() {
-		return this._sx;
-	}
+    get sx() {
+        return this._sx;
+    }
 
-	get sy() {
-		return this._sy;
-	}
+    get sy() {
+        return this._sy;
+    }
 
-	get r() {
-		return this._r;
-	}
+    get r() {
+        return this._r;
+    }
 
-	get name() {
-		return this._name;
-	}
+    get name() {
+        return this._name;
+    }
 
-	set x(x) {
-		this._x = x;
-	}
+    set x(x) {
+        this._x = x;
+    }
 
-	set y(y) {
-		this._y = y;
-	}
+    set y(y) {
+        this._y = y;
+    }
 
-	set z(z) {
-		this._z = z;
-	}
+    set z(z) {
+        this._z = z;
+    }
 
-	set sx(sx) {
-		this._sx = sx;
-	}
+    set sx(sx) {
+        this._sx = sx;
+    }
 
-	set sy(sy) {
-		this._sy = sy;
-	}
+    set sy(sy) {
+        this._sy = sy;
+    }
 
-	set r(r) {
-		this._r = r;
-	}
+    set r(r) {
+        this._r = r;
+    }
 
-	set name(name) {
-		this._name = name;
-	}
+    set name(name) {
+        this._name = name;
+    }
 
     label(g) {
-			if(!g) {
-				fill(30);
-				ellipse(this.sx, this.sy, 15, 15);
-        rect(this.sx - 35, this.sy - 40, 70, 25, 3, 3, 3, 3);
-        triangle(this.sx, this.sy - 10, this.sx - 7, this.sy - 16, this.sx + 7, this.sy - 16);
-        fill(255);
-        textSize(12);
-        textFont("Arial");
-        textAlign(CENTER);
-        text(this.name, this.sx, this.sy - 23)
-			}
+        if(!g) {
+            fill(30);
+            ellipse(this.sx, this.sy, 15, 15);
+            rect(this.sx - 35, this.sy - 40, 70, 25, 3, 3, 3, 3);
+            triangle(this.sx, this.sy - 10, this.sx - 7, this.sy - 16, this.sx + 7, this.sy - 16);
+            fill(255);
+            textSize(12);
+            textFont('Arial');
+            textAlign(CENTER);
+            text(this.name, this.sx, this.sy - 23);
+        }
     }
 
     update(speed) {
-		this.z -= speed;
-      if (this.z < 1) {
-				this.z = width;
-				this.x = random(-width / 2, width / 2);
-				this.y = random(-height / 2, height / 2);
-      }
+        this.z -= speed;
+        if (this.z < 1) {
+            this.z = width;
+            this.x = random(-width / 2, width / 2);
+            this.y = random(-height / 2, height / 2);
+        }
     }
 
     show(g) {
-			this.sx = map(this.x / this.z, 0, 1, 0, width);
-			this.sy = map(this.y / this.z, 0, 1, 0, height);
-			this.r = map(this.z, 0, width, 5, 0);
-			if (g) {
-	      g.fill(255);
-	      g.ellipse(this.sx, this.sy, this.r + 3);
-			} else {
-				fill(255);
-				ellipse(this.sx, this.sy, this.r);
-			}
+        this.sx = map(this.x / this.z, 0, 1, 0, width);
+        this.sy = map(this.y / this.z, 0, 1, 0, height);
+        this.r = map(this.z, 0, width, 5, 0);
+        if (g) {
+            g.fill(255);
+            g.ellipse(this.sx, this.sy, this.r + 3);
+        } else {
+            fill(255);
+            ellipse(this.sx, this.sy, this.r);
+        }
     }
 }

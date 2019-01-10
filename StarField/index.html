@@ -18,7 +18,8 @@
       Hold left click to accelerate through the void of space, or release to have a look around.
       Hovering over stars and planets will reveal their names (assuming object labelling is turned on).<br>
       Using the sliders below, you can customise the Starfield. Press Generate to create a new instance with your chosen parameters.<br>
-      Try resizing the window you're viewing this in, each StarField adapts dynamically to fill the screen.
+      Try resizing the window you're viewing this in, each StarField adapts dynamically to fill the screen. <br>
+      (Note that Object Labelling will not work when the StarField is drawn on to a 3D shape)
     </font>
     </p>
     <div>
@@ -30,6 +31,7 @@
       &nbsp;&nbsp;&nbsp;&nbsp;
       Object Labelling <input type="checkbox" id="labellingOn">
       &nbsp;&nbsp;&nbsp;&nbsp;
+      Draw on Cube <input type="checkbox" id="drawBox">
     <button id="generate">Generate</button>
   </div>
     <script type="text/javascript">
@@ -37,15 +39,24 @@
       var planetDensity = document.getElementById("planetDensity").value;
       var maxSpeed = document.getElementById("maxSpeed").value;
       var labellingOn = document.getElementById("labellingOn").checked;
+      var drawBox = document.getElementById("drawBox").checked;
+      var refresh = false;
 
       function generate() {
         starDensity = document.getElementById("starDensity").value;
         planetDensity = document.getElementById("planetDensity").value;
         maxSpeed = document.getElementById("maxSpeed").value;
         labellingOn = document.getElementById("labellingOn").checked;
-        setup(starDensity, planetDensity, maxSpeed, labellingOn);
+        drawBox = document.getElementById("drawBox").checked;
+        if (drawBox) {
+          refresh = true;
+        }
+        else if (refresh && !drawBox) {
+          refresh = false;
+          location.reload();
+        }
+        setup(starDensity, planetDensity, maxSpeed, labellingOn, drawBox);
       }
-
       document.getElementById("generate").addEventListener("click", generate);
     </script>
   </body>

@@ -1,6 +1,6 @@
 class StarField {
 
-	constructor(starDensity, planetDensity, maxSpeed, objectLabelling, g) {
+	constructor(starDensity, planetDensity, maxSpeed, objectLabelling, cube, sphere) {
 		this.speed = 1;
 		this.maxSpeed = maxSpeed || 50;
 		this.stars = [];
@@ -10,15 +10,17 @@ class StarField {
     this.objectLabelling = objectLabelling || false;
 		this.mX = mouseX - width/2;
 		this.mY = mouseY - height/2;
+		this.cube = cube;
+		this.sphere = sphere;
 
-		if(g) {
+		if(this.cube || this.sphere) {
 			createCanvas(windowWidth, windowHeight, WEBGL);
 			this.g = createGraphics(windowWidth, windowHeight);
 		} else {
 			createCanvas(windowWidth, windowHeight);
 		}
 
-		background(30);
+		background(0);
     noStroke();
 
 		for (var i = 0; i < this.starDensity; i++) {
@@ -135,7 +137,11 @@ class StarField {
 			rotateX(frameCount * 0.01);
 			rotateY(frameCount * 0.01);
 			texture(this.g);
-			box(windowWidth/2);
+			if(this.cube) {
+				box(windowWidth/2);
+			} else {
+				sphere(windowWidth/3);
+			}
 		}
 	}
 }

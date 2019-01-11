@@ -124,16 +124,16 @@ class StarField {
         this.mY = mouseY - height/2;
 
         for (var i = 0; i < this.stars.length; i++) {
-            if ((Math.abs(this.stars[i].sx - this.mX) <= 10) && (Math.abs(this.stars[i].sy - this.mY) <= 10) && !mouseIsPressed && this.objectLabelling) {
-                this.stars[i].label(this.g);
+            if ((Math.abs(this.stars[i].sx - this.mX) <= 10) && (Math.abs(this.stars[i].sy - this.mY) <= 10) && !mouseIsPressed && this.objectLabelling && !this.g) {
+                this.stars[i].label();
             }
             this.stars[i].update(this.speed);
             this.stars[i].show(this.g);
         }
 
         for (i = 0; i < this.planets.length; i++) {
-            if ((Math.abs(this.planets[i].sx - this.mX) <= 10) && (Math.abs(this.planets[i].sy - this.mY) <= 10) && !mouseIsPressed && this.objectLabelling) {
-                this.planets[i].label(this.g);
+            if ((Math.abs(this.planets[i].sx - this.mX) <= 10) && (Math.abs(this.planets[i].sy - this.mY) <= 10) && !mouseIsPressed && this.objectLabelling && !this.g) {
+                this.planets[i].label();
             }
             this.planets[i].update(this.speed);
             this.planets[i].show(this.g);
@@ -263,8 +263,7 @@ class Planet {
         this._name = name;
     }
 
-    label(g) {
-        if(!g) {
+    label() {
             fill(30);
             ellipse(this.sx, this.sy, 15, 15);
             rect(this.sx - 35, this.sy - 40, 70, 25, 3, 3, 3, 3);
@@ -274,7 +273,6 @@ class Planet {
             textFont('Arial');
             textAlign(CENTER);
             text(this.name, this.sx, this.sy - 23);
-        }
     }
 
     update(speed) {
@@ -382,8 +380,7 @@ class Star {
         this._name = name;
     }
 
-    label(g) {
-        if(!g) {
+    label() {
             fill(30);
             ellipse(this.sx, this.sy, 15, 15);
             rect(this.sx - 35, this.sy - 40, 70, 25, 3, 3, 3, 3);
@@ -393,7 +390,6 @@ class Star {
             textFont('Arial');
             textAlign(CENTER);
             text(this.name, this.sx, this.sy - 23);
-        }
     }
 
     update(speed) {

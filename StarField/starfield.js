@@ -7,7 +7,7 @@ class StarField {
         this.starDensity = starDensity || 400;
         this.planets = [];
         this.planetDensity = planetDensity || 40;
-        this.objectLabelling = objectLabelling || false;
+        this.objectLabelling = objectLabelling;
         this.mX = mouseX - width/2;
         this.mY = mouseY - height/2;
         this.cube = cube;
@@ -27,9 +27,6 @@ class StarField {
         for (i = 0; i < this.planetDensity; i++) {
             this.planets[i] = new Planet();
         }
-
-        background(0);
-        noStroke();
     }
 
     get speed() {
@@ -99,6 +96,7 @@ class StarField {
             translate(width/2, height/2);
         }
 
+				noStroke();
         this.mX = mouseX - width/2;
         this.mY = mouseY - height/2;
 

@@ -20,29 +20,13 @@ The component consists of 3 classes: **StarField**, **Planet** and **Star**:
 
 #### constructor()
 
-  The constructor takes 4 optional parameters, `starDensity`, `planetDensity`, `maxSpeed` and `objectLabelling`, expecting a boolean value for `objectLabelling` and integers for all others. If no values are specified, then they will default to 50, 400, 40 and false respectively. These values are then passed to variables of the same name. The constructor then initialises multiple other variables, `speed`, `mX`, `mY`, and two empty lists named `stars` and `planets`.  
+  The constructor takes 6 optional parameters, `starDensity`, `planetDensity`, `maxSpeed`, `objectLabelling`, `cube` and `sphere`, expecting a boolean value for `objectLabelling`, `cube` and `sphere`, and integers for all others. If no values are specified, then they will default to 50, 400, 40, false, false and false respectively. The values of these parameters are then passed to variables of the same name. The constructor then initialises multiple other variables, `speed`, `mX`, `mY`, and two empty lists named `stars` and `planets`, adhering to the convention of prefixing them with `this.`.
 
+  `speed` is used to set the default scrolling speed of the StarField when the mouse is not pressed, by default, this is set to 1. `mX` and `mY` represent translated versions of the current x and y coordinates of the mouse, where mX is the current x coordinate minus half the width of the window the component is rendered in, and mY is the current y coordinate minus half the height of the window. (The reason for this translation is explained in `draw()`)
   
-
-  `speed` is used to set the default scrolling speed of the StarField when the mouse is not pressed, by default, this is set to 1. `mX` and `mY` represent translated versions of the current x and y coordinates of the mouse, where mX is the current x coordinate minus half the width of the window the component is rendered in, and mY is the current y coordinate minus half the height of the window. (The reason for this translation is explained in `draw()`  
-
-  
-
-  The background is then set to the default greyscale value of 100 with `background(100)`, producing a translucent black, allowing us to achieve the trailing effect behind stars and planets when the component is rendered.  
-
-  
-
-  `noStroke()` stops the component from drawing outlines.
-
-   
-
-  `createCanvas(windowWidth, windowHeight)` initialises a canvas with width and height equal to that of the window that the component is being initialised in. 
-
-  
+  An if statement is then used to check whether `cube` or `sphere` is true, and if so, creates a canvas with WEBGL enabled using `createCanvas(windowWidth, windowHeight, WEBGL)`. It then creates a p5.Renderer object and stores it in a variable named g using `this.g = createGraphics(windowWidth, windowHeight)`. If instead, `cube` and `sphere` are both false, a regular P2D canvas is created with `createCanvas(windowWidth, windowHeight)`. `windowWidth` and `windowHeight` are used to create a canvas with width and height equal to that of the window that the component is being intialised in.
 
   The constructor finally populates the lists `stars` and `planets` by intialising new instances of the classes `Star` and `Planet`, storing each instance as an element in the list. It creates as many stars as the value of `starDensity` and as many planets as the value of `planetDensity`.
-
-  
 
 #### getters and setters
 
@@ -72,33 +56,21 @@ set speed(speed) {
 
 #### draw()
 
-The `draw()` function begins by drawing a translucent greyscale rectangle the size of the canvas using `fill(0,100)` and `rect(0, 0, width, height)`. As mentioned above, this translucency creates the trailing effect of stars and planets.
-
-
-
- `translate(width/2, height/2)` is then used to translate all proceeding graphics, this allows the StarField effect to appear to come from the center.
-
+The `draw()` function begins by checking whether or not the variable `g` exists, if it does, a white background is drawn using `background(255)` and the background of the p5.Renderer is set to a translucent black using `this.g.background(0,100)`, allowing a trailing effect when planets and stars move. If `g` is undefined, `background(0, 100)` is used to draw a translucent black background onto the main canvas instead. `translate(width/2, height/2)` is then used to translate all proceeding graphics, this allows the StarField effect to appear to come from the center.
  
+ Since the `draw` function is called every frame, we update the variables `mX` and `mY` so the component is always aware of where the mouse is, allowing functionality for star and planet labelling. Their values are defined identically to how they are definined in the constructor. `noStroke()` is then used to remove strokes from all subsequent drawing in the component.
 
- Since the `draw` function is called every frame, we update the variables `mX` and `mY` so the component is always aware of where the mouse is, allowing functionality for star and planet labelling.
+ For loops are then used to draw and update the positions of each star and planet. This is done for each item in the lists `stars` and `planets`, using the `star` and `planet` methods `update(this.speed)` and `show(this.g)`. The for loops also check if the mouse's X and Y posititon are within 10 pixels of the current star or planet in the loop, and if `objectLabelling` equals true. If so, the method `label(this.g)` is called on that graphic. (The reasons for passing the parameters `this.speed` and `this.g` can be found in the explanation of each method)
 
- 
+An if statement then checks whether or not the mouse is pressed. If it is, whilst the value of `speed` is less than `maxSpeed`, it increases `speed` by increments of 0.005. If the mouse is not pressed, whilst the value of `speed` is greater than zero, it decreases `speed` by decrements of 0.1.
 
- For loops are then used to draw and update the positions of each star and planet. This is done for each item in the lists `stars` and `planets`, using the `star` and `planet` methods `update()` and `show()`. The for loops also check if the mouse's X and Y posititon are within 10 pixels of the graphic, and if `objectLabelling` equals `true`. If so, the method `label()` is called.
-
- 
-
- Finally an if statement checks whether or not the mouse is pressed. If it is, whilst the value of `speed` is less than `maxSpeed`, it increases `speed` by increments of 0.005. If the mouse is not pressed, whilst the value of `speed` is greater than zero, it decreases `speed` by decrements of 0.1.
-
- 
+Finally, an if statement checks whether or not `g` exists, and if so sets up the canvas for a 3D object. `rotateX(frameCount * 0.01)` and `rotateY(frameCount * 0.01)` prepare a slow rotation for the object, and `texture(this.g)` sets the texture for the shape as the p5.Renderer object created earlier. Another nested if statement checks whether `cube` is true, and if so uses `box(windowWidth/2)` to draw a box with side length equal to half of `windowWidth`, else (meaning `sphere` is true), `sphere(windowWidth/3)` is used to draw a sphere with radius equal to a third of 'windowWidth'
 
 ### Planet
 
 
 
 #### constructor()
-
-
 
 Initialises the variables `x`, `y`, `z`, `red`, `green`, `blue`, `sx`, `sy`, `r`, `gods`, `numerals` and `name`.
 

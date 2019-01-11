@@ -57,6 +57,18 @@ class StarField {
         return this._mY;
     }
 
+		get cube() {
+			return this._cube;
+		}
+
+		get sphere() {
+			return this._sphere;
+		}
+
+		get g() {
+			return this._g;
+		}
+
     set speed(speed) {
         this._speed = speed;
     }
@@ -85,6 +97,17 @@ class StarField {
         this._mY = mY;
     }
 
+		set cube(cube) {
+				this._cube = cube;
+		}
+
+		set sphere(sphere) {
+				this._sphere = sphere;
+		}
+
+		set g(g) {
+				this._g = g;
+		}
 
 
     draw() {

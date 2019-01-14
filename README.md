@@ -64,7 +64,7 @@ The `draw()` function begins by checking whether or not the variable `g` exists,
 
 An if statement then checks whether or not the mouse is pressed. If it is, whilst the value of `speed` is less than `maxSpeed`, it increases `speed` by increments of 0.005. If the mouse is not pressed, whilst the value of `speed` is greater than zero, it decreases `speed` by decrements of 0.1.
 
-Finally, an if statement checks whether or not `g` exists and if so sets up the canvas for a 3D object. `rotateX(frameCount * 0.01)` and `rotateY(frameCount * 0.01)` create a slow rotation for the object, and `texture(this.g)` sets the texture for the shape as the p5.Renderer object. Another nested if statement checks whether `cube` is true, and if so uses `box(windowWidth/2)` to draw a box with side length equal to half of `windowWidth`. If not (meaning `sphere` must be true), `sphere(windowWidth/3)` is used to draw a sphere with radius equal to a third of 'windowWidth'
+Finally, an if statement checks whether or not `g` exists and if so sets up the canvas for a 3D object. `rotateX(frameCount * 0.01)` and `rotateY(frameCount * 0.01)` create a slow rotation for the object, and `texture(this.g)` sets the texture for the shape as the p5.Renderer object. Another nested if statement checks whether `cube` is true, and if so uses `box(windowWidth/4)` to draw a box with side length equal to a quarter of `windowWidth`. If not (meaning `sphere` must be true), `sphere(windowWidth/6, 50, 50)` is used to draw a sphere with radius equal to a sixth of 'windowWidth'. The values 50 and 50 specify the amount of segments used to render the sphere, creating a smoother texture.
 
 ### Planet
 

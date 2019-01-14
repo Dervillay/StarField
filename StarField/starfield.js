@@ -57,17 +57,17 @@ class StarField {
         return this._mY;
     }
 
-		get cube() {
-			return this._cube;
-		}
+    get cube() {
+        return this._cube;
+    }
 
-		get sphere() {
-			return this._sphere;
-		}
+    get sphere() {
+        return this._sphere;
+    }
 
-		get g() {
-			return this._g;
-		}
+    get g() {
+        return this._g;
+    }
 
     set speed(speed) {
         this._speed = speed;
@@ -97,17 +97,17 @@ class StarField {
         this._mY = mY;
     }
 
-		set cube(cube) {
-				this._cube = cube;
-		}
+    set cube(cube) {
+        this._cube = cube;
+    }
 
-		set sphere(sphere) {
-				this._sphere = sphere;
-		}
+    set sphere(sphere) {
+        this._sphere = sphere;
+    }
 
-		set g(g) {
-				this._g = g;
-		}
+    set g(g) {
+        this._g = g;
+    }
 
 
     draw() {
@@ -119,7 +119,7 @@ class StarField {
             translate(width/2, height/2);
         }
 
-				noStroke();
+        noStroke();
         this.mX = mouseX - width/2;
         this.mY = mouseY - height/2;
 
@@ -158,9 +158,9 @@ class StarField {
             rotateY(frameCount * 0.01);
             texture(this.g);
             if(this.cube) {
-                box(windowWidth/2);
+                box(windowWidth/4);
             } else {
-                sphere(windowWidth/3);
+                sphere(windowWidth/6, 50, 50);
             }
         }
     }
@@ -264,15 +264,15 @@ class Planet {
     }
 
     label() {
-            fill(30);
-            ellipse(this.sx, this.sy, 15, 15);
-            rect(this.sx - 35, this.sy - 40, 70, 25, 3, 3, 3, 3);
-            triangle(this.sx, this.sy - 10, this.sx - 7, this.sy - 16, this.sx + 7, this.sy - 16);
-            fill(255);
-            textSize(12);
-            textFont('Arial');
-            textAlign(CENTER);
-            text(this.name, this.sx, this.sy - 23);
+        fill(30);
+        ellipse(this.sx, this.sy, 15, 15);
+        rect(this.sx - 35, this.sy - 40, 70, 25, 3, 3, 3, 3);
+        triangle(this.sx, this.sy - 10, this.sx - 7, this.sy - 16, this.sx + 7, this.sy - 16);
+        fill(255);
+        textSize(12);
+        textFont('Arial');
+        textAlign(CENTER);
+        text(this.name, this.sx, this.sy - 23);
     }
 
     update(speed) {
@@ -381,15 +381,15 @@ class Star {
     }
 
     label() {
-            fill(30);
-            ellipse(this.sx, this.sy, 15, 15);
-            rect(this.sx - 35, this.sy - 40, 70, 25, 3, 3, 3, 3);
-            triangle(this.sx, this.sy - 10, this.sx - 7, this.sy - 16, this.sx + 7, this.sy - 16);
-            fill(255);
-            textSize(12);
-            textFont('Arial');
-            textAlign(CENTER);
-            text(this.name, this.sx, this.sy - 23);
+        fill(30);
+        ellipse(this.sx, this.sy, 15, 15);
+        rect(this.sx - 35, this.sy - 40, 70, 25, 3, 3, 3, 3);
+        triangle(this.sx, this.sy - 10, this.sx - 7, this.sy - 16, this.sx + 7, this.sy - 16);
+        fill(255);
+        textSize(12);
+        textFont('Arial');
+        textAlign(CENTER);
+        text(this.name, this.sx, this.sy - 23);
     }
 
     update(speed) {

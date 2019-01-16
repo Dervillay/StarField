@@ -1,6 +1,6 @@
 class StarField {
 
-    constructor(starDensity, planetDensity, maxSpeed, objectLabelling, cube, sphere) {
+    constructor(starDensity, planetDensity, maxSpeed, objectLabelling, drawCube, drawSphere) {
         this.speed = 1;
         this.maxSpeed = maxSpeed || 50;
         this.stars = [];
@@ -10,8 +10,8 @@ class StarField {
         this.objectLabelling = objectLabelling;
         this.mX = mouseX - width/2;
         this.mY = mouseY - height/2;
-        this.cube = cube;
-        this.sphere = sphere;
+        this.cube = drawBox;
+        this.sphere = drawSphere;
 
         if(this.cube || this.sphere) {
             createCanvas(windowWidth, windowHeight, WEBGL);
@@ -65,10 +65,6 @@ class StarField {
         return this._sphere;
     }
 
-    get g() {
-        return this._g;
-    }
-
     set speed(speed) {
         this._speed = speed;
     }
@@ -105,15 +101,16 @@ class StarField {
         this._sphere = sphere;
     }
 
-    set g(g) {
-        this._g = g;
-    }
 
+    draw(g) {
 
-    draw() {
         if (this.g) {
+            g = this.g;
             background(255);
-            this.g.background(0,100);
+        }
+
+        if (g) {
+            g.background(0,100);
         } else {
             background(0, 100);
             translate(width/2, height/2);
@@ -128,7 +125,7 @@ class StarField {
                 this.stars[i].label();
             }
             this.stars[i].update(this.speed);
-            this.stars[i].show(this.g);
+            this.stars[i].show(g);
         }
 
         for (i = 0; i < this.planets.length; i++) {
@@ -136,7 +133,7 @@ class StarField {
                 this.planets[i].label();
             }
             this.planets[i].update(this.speed);
-            this.planets[i].show(this.g);
+            this.planets[i].show(g);
         }
 
         if (mouseIsPressed) {
@@ -156,10 +153,11 @@ class StarField {
         if(this.g) {
             rotateX(frameCount * 0.01);
             rotateY(frameCount * 0.01);
-            texture(this.g);
+            texture(g);
             if(this.cube) {
                 box(windowWidth/4);
-            } else {
+            }
+            else if (this.sphere) {
                 sphere(windowWidth/6, 50, 50);
             }
         }

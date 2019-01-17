@@ -24,7 +24,7 @@ The component consists of 3 classes: **StarField**, **Planet** and **Star**:
 
 Getters and setters exist for all relevant variables in the following form:
 
-~~~~
+```javascript
 
 get speed() {
 
@@ -32,9 +32,9 @@ get speed() {
 
 }
 
-~~~~
+```
 
-~~~~
+```javascript
 
 set speed(speed) {
 
@@ -42,7 +42,7 @@ set speed(speed) {
 
 }
 
-~~~~
+```
 
 
 
@@ -139,7 +139,7 @@ index.html consists of HTML form controls that allow interaction with the Docume
 
 Since the **StarField** populates the `stars` and `planets` lists in the constructor, there is a generate button that creates a new instance of the sketch with the parameters specified by the form controls. It does this by using an event listener to check for a button press, and when it receives one, runs the JavaScript function `generate()`. This retrieves the current numerical value of the form controls, stores them in variables, and then passes these variables as parameters to the `setup()` function in **index.js**, creating a new instance of **StarField** with the values specified. There is also an additional variable named `refresh`, that stores a boolean value representing whether or not the current rendering mode is P2D (false) or WEBGL (true). If it is WEBGL, then when generate is pressed, and WEBGL is no longer required (i.e no 3D shapes are being drawn), the page is reloaded to restore the rendering mode back to P2D. The code for doing so is as follows:
 
-~~~~
+```javascript
       var starDensity = document.getElementById("starDensity").value;
       var planetDensity = document.getElementById("planetDensity").value;
       var maxSpeed = document.getElementById("maxSpeed").value;
@@ -168,20 +168,20 @@ Since the **StarField** populates the `stars` and `planets` lists in the constru
       
       document.getElementById("generate").addEventListener("click", generate);
 
-~~~~
+```
 
 ## index.js
 
  The component can be easily embedded in an HTML page through the use of an additional **index.js** file. In **index.html** we import the **starfield.js** code containing the class, the **p5.js** library and **index.js**, we do this as follows:
-~~~~
+```javascript
     <script src="../p5.js"></script>
     <script src="starfield.js"></script>
     <script src="index.js"></script>
-~~~~
+```
 
 We then create an instance of **StarField** in **index.js**:
 
-~~~~
+```javascript
 var s;
 
 function setup(starDensity, planetDensity, maxSpeed, objectLabelling, drawCube, drawSphere) {
@@ -191,7 +191,7 @@ function setup(starDensity, planetDensity, maxSpeed, objectLabelling, drawCube, 
 function draw(g) {
     s.draw(g);
 }
-~~~~
+```
 
 This allows the use of the generate button (mentioned above) in **index.html**, and the creation of new instances of **StarField** through calls to `setup()`. As mentioned above, if `drawCube` and `drawSphere` are left undefined or false, then a p5.renderer can be passed to `draw(g)` and the StarField will be drawn directly onto it.
 
